@@ -3,9 +3,9 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
     create_table :questions do |t|
       t.references :user, foreign_key: true
       t.references :genre, foreign_key: true
-      t.string :title
-      t.text :content
-      t.integer :flag
+      t.string :title, null: false
+      t.text :content, null: false
+      t.integer :flag, null: false, default: 1
 
       t.timestamps
     end

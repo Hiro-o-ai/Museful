@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :nickname, null: false
       t.string :image_id
-      t.integer :flag
+      t.integer :flag, null:false, default: 1
       t.timestamps null: false
     end
     add_index :users, :nickname,             unique: true

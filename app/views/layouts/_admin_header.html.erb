@@ -1,0 +1,17 @@
+<div class="header" id="header">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <%= link_to "Museful", admins_path %>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <% if admin_signed_in? %>
+         <li><%= link_to destroy_admin_session_path, method: :delete, class: "my-bt" do%><i class="glyphicon glyphicon-log-out"></i> logout<% end %></li>
+         <li><%= link_to "genre", admins_genres_path %></li>
+        <% else %>
+          <li><%= link_to new_admin_session_path, class: "my-bt" do%><i class="glyphicon glyphicon-log-in"></i> login<% end %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
