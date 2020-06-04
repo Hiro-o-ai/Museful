@@ -1,0 +1,2 @@
+class Browsinghistory < ApplicationRecord
+end

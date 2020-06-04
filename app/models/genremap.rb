@@ -1,0 +1,2 @@
+class Genremap < ApplicationRecord
+end
