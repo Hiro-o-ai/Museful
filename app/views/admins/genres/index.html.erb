@@ -2,22 +2,23 @@
 
 <h3>ジャンル一覧・追加</h3>
 
-<%= render "admins/shared/error_messages", resource: @genre %>
 <%= form_for(@genre,url: admins_genres_path) do |f| %>
+<%= render "admins/shared/error_messages", resource: f.object %>
   <%= f.label :name, "ジャンル" %>
   <%= f.text_field :name, autocomplete: "name" %>
-  <label>
-    <%= f.radio_button :flag, 1 %> 有効
-  </label>
-  <label>
-    <%= f.radio_button :flag, 2 %> 無効
-  </label>
+    <label>
+      <%= f.radio_button :case, "記事" %> 記事
+    </label>
+    <label>
+      <%= f.radio_button :case, "質問" %> 質問
+    </label>
   <%= f.submit "追加",class: "btn btn-primary btn-md" %>
 <% end %>
 
 <table class="table table-bordered">
   <thead>
     <th>ジャンル</th>
+    <th>タイプ</th>
     <th>状態</th>
     <th></th>
   </thead>
@@ -28,7 +29,14 @@
       <%= genre.name %>
     </td>
     <td>
-      <% if genre.flag == 1 %>
+      <% if genre.case == "記事" %>
+        記事
+      <% else %>
+        質問
+      <% end %>
+    </td>
+    <td>
+      <% if genre.status == "有効" %>
         有効
       <% else %>
         無効

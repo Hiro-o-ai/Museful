@@ -1,0 +1,34 @@
+<%= render "layouts/admin_header" %>
+
+<h3>会員一覧</h3>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= attachment_image_tag user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "100x100" %><%= user.nickname %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.status == "有効" %>
+            <p>有効</p>
+          <% else %>
+            <p>退会済み</p>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "編集する",edit_admins_user_path(user), class: "btn btn-primary btn-md" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

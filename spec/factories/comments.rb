@@ -5,6 +5,6 @@ FactoryBot.define do
     title { "MyString" }
     content { "MyText" }
     rate { 1.5 }
-    flag { 1 }
+    status { 1 }
   end
 end

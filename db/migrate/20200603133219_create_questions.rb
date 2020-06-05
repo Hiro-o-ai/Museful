@@ -5,7 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.references :genre, foreign_key: true
       t.string :title, null: false
       t.text :content, null: false
-      t.integer :flag, null: false, default: 1
+      t.integer :status, null: false, default: 1
 
       t.timestamps
     end

@@ -6,7 +6,7 @@ class CreateComments < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.text :content, null: false
       t.float :rate, null: false
-      t.integer :flag, null: false, default: 1
+      t.integer :status, null: false, default: 1
 
       t.timestamps
     end

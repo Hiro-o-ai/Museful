@@ -4,9 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, :flag, presence: true
+  validates :nickname, :status, presence: true
   validates :nickname, uniqueness: true
 
+  # refileで画像をアップする際に必要
   attachment :image
+
+  # マジックナンバーになることを防ぐため
+  enum status:{ 有効: 1, 退会済: 2}
 
 end

@@ -4,6 +4,6 @@ FactoryBot.define do
     genre_id { 1 }
     title { "MyString" }
     content { "MyText" }
-    flag { 1 }
+    status { 1 }
   end
 end

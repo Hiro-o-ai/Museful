@@ -7,6 +7,6 @@
 <%= link_to "退会しない",edit_user_path(@user), class: "btn btn-primary"%>
 
 <%= form_with(url: user_leave_path, model: @user, local:true) do |f| %>
-  <%= f.hidden_field :flag, :value => 2 %>
+  <%= f.hidden_field :status, :value => "退会済" %>
   <%= f.submit "退会する",class: "btn btn-primary"%>
 <% end %>

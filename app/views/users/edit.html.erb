@@ -12,6 +12,11 @@
     <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
   </div>
 
+  <div class="field">
+    <%= f.label :introduction %><br />
+    <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction" %>
+  </div>
+
   <%= f.submit "編集内容を保存する",class: "btn btn-primary"%>
 <% end %>
 

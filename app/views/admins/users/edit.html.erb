@@ -1,0 +1,21 @@
+<%= render "layouts/admin_header" %>
+
+
+<h3><%= @user.nickname %>さんの会員情報編集</h3>
+
+<h4>会員ID</h4>
+<%= @user.id %>
+
+<%= form_with(url: admins_user_path, model: @user, local:true) do |f| %>
+
+  <%= render "devise/shared/error_messages", resource: f.object %>
+  
+  <%= f.label :nickname, "ニックネーム" %>
+  <%= f.text_field :nickname %>
+
+  <%= f.label :status, "会員ステータス" %>
+  <label><%=f.radio_button :status, "有効" %>有効</label>
+  <label><%=f.radio_button :status, "退会済" %>退会済</label>
+
+  <%= f.submit "変更を保存する", class: "btn btn-primary btn-md" %>
+<% end %>

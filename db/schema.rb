@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
     t.string "title", null: false
     t.text "content", null: false
     t.float "rate", null: false
-    t.integer "flag", default: 1, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_comments_on_user_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "target_id", null: false
-    t.integer "type", null: false
+    t.integer "case", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_favorites_on_user_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
   create_table "genremaps", force: :cascade do |t|
     t.integer "target_id", null: false
     t.integer "genre_id"
-    t.integer "type", null: false
+    t.integer "case", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_genremaps_on_genre_id"
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "type", null: false
-    t.integer "flag", default: 1, null: false
+    t.integer "case", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
     t.integer "genre_id"
     t.string "title", null: false
     t.text "content", null: false
-    t.integer "flag", default: 1, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_questions_on_genre_id"
@@ -112,7 +112,8 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
     t.datetime "remember_created_at"
     t.string "nickname", null: false
     t.string "image_id"
-    t.integer "flag", default: 1, null: false
+    t.text "introduction"
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

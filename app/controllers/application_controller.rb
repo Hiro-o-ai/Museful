@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource == current_user
         @user = current_user
-        if @user.flag == 2
+        if @user.status == "退会済"
             reset_session
         end
         root_path
     else
-      top_admins_path
+      admins_path
     end
   end
   
@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :flag])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :status])
     end
 end
