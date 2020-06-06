@@ -13,4 +13,7 @@ class User < ApplicationRecord
   # マジックナンバーになることを防ぐため
   enum status:{ 有効: 1, 退会済: 2}
 
+
+  has_many :articles, dependent: :destroy
+  has_many :questions, dependent: :destroy
 end

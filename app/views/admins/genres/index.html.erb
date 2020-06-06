@@ -2,8 +2,8 @@
 
 <h3>ジャンル一覧・追加</h3>
 
-<%= form_for(@genre,url: admins_genres_path) do |f| %>
-<%= render "admins/shared/error_messages", resource: f.object %>
+<%= form_with(url: admins_genres_path, model: @genre, local:true) do |f| %>
+  <%= render "admins/shared/error_messages", resource: f.object %>
   <%= f.label :name, "ジャンル" %>
   <%= f.text_field :name, autocomplete: "name" %>
     <label>

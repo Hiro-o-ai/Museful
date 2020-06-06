@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_134026) do
+ActiveRecord::Schema.define(version: 2020_06_06_004440) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,15 +24,21 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "articles", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "article_genres", force: :cascade do |t|
+    t.integer "article_id"
     t.integer "genre_id"
-    t.string "title", null: false
-    t.text "content", null: false
-    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["genre_id"], name: "index_articles_on_genre_id"
+    t.index ["article_id"], name: "index_article_genres_on_article_id"
+    t.index ["genre_id"], name: "index_article_genres_on_genre_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -61,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
     t.text "content", null: false
     t.float "rate", null: false
     t.integer "status", default: 1, null: false
+    t.integer "case", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_comments_on_user_id"
@@ -75,15 +82,6 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "genremaps", force: :cascade do |t|
-    t.integer "target_id", null: false
-    t.integer "genre_id"
-    t.integer "case", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["genre_id"], name: "index_genremaps_on_genre_id"
-  end
-
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
     t.integer "case", null: false
@@ -92,15 +90,22 @@ ActiveRecord::Schema.define(version: 2020_06_03_134026) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "question_genres", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_question_genres_on_genre_id"
+    t.index ["question_id"], name: "index_question_genres_on_question_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "genre_id"
     t.string "title", null: false
     t.text "content", null: false
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["genre_id"], name: "index_questions_on_genre_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 

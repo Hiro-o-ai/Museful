@@ -1,2 +1,34 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+<%= render "layouts/user_header" %>
+
+<%= link_to "new", new_article_path, class: "btn btn-primary btn-md" %>
+<h3>articles</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @articles.each do |article| %>
+    <tbody>
+      <tr>
+        <td><%= article.title %></td>
+        <td>
+          <% article.article_genres.each do |genre_map| %>
+            <%= genre_map.genre.name %>
+          <% end %>
+        </td>
+        <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+        <td><%= article.content.html_safe %></td>
+        <td>
+          <%= link_to "show", article_path(article) %>
+          <%= link_to "Edit", edit_article_path(article) %>
+          <%= link_to "Destroy", article_path(article), method: :delete, "data-confirm" => "Are you sure?" %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

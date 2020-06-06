@@ -6,11 +6,16 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to user_path(current_user), class: "my-bt" do%><i class="glyphicon glyphicon-home"></i>My Page<% end %></li>
-         <li><%= link_to destroy_user_session_path, method: :delete, class: "my-bt" do%><i class="glyphicon glyphicon-log-out"></i> logout<% end %></li>
+          <li><%= link_to articles_path, class: "my-bt" do%>articles<% end %></li>
+          <li><%= link_to questions_path, class: "my-bt" do%>questions<% end %></li>
+          <li><%= link_to user_path(current_user), class: "my-bt" do%>My Page<% end %></li>
+         <li><%= link_to destroy_user_session_path, method: :delete, class: "my-bt" do%>logout<% end %></li>
         <% else %>
-          <li><%= link_to new_user_registration_path, class: "my-bt" do%><i class="glyphicon glyphicon-edit"></i> sign up<% end %></li>
-          <li><%= link_to new_user_session_path, class: "my-bt" do%><i class="glyphicon glyphicon-log-in"></i> login<% end %></li>
+          <li><%= link_to articles_path, class: "my-bt" do%>articles<% end %></li>
+          <li><%= link_to questions_path, class: "my-bt" do%>questions<% end %></li>
+          <li><%= link_to new_user_registration_path, class: "my-bt" do%> sign up<% end %></li>
+          <li><%= link_to new_user_session_path, class: "my-bt" do%>
+          login<% end %></li>
         <% end %>
       </ul>
     </div>

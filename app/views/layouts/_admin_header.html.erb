@@ -6,11 +6,13 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <% if admin_signed_in? %>
-         <li><%= link_to destroy_admin_session_path, method: :delete, class: "my-bt" do%><i class="glyphicon glyphicon-log-out"></i> logout<% end %></li>
          <li><%= link_to "users", admins_users_path %></li>
+         <li><%= link_to "articles", admins_articles_path %></li>
+         <li><%= link_to "questions", admins_questions_path %></li>
          <li><%= link_to "genres", admins_genres_path %></li>
+         <li><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to new_admin_session_path, class: "my-bt" do%><i class="glyphicon glyphicon-log-in"></i> login<% end %></li>
+          <li><%= link_to "login", new_admin_session_path %></li>
         <% end %>
       </ul>
     </div>

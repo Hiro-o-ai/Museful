@@ -2,9 +2,9 @@
 
 <h3>ジャンル編集</h3>
 
-<%= form_for(@genre,url: admins_genre_path) do |f| %>
+<%= form_with(url: admins_genre_path, model:@genre, local:true) do |f| %>
 
-<%= render "admins/shared/error_messages", resource: f.object %>
+  <%= render "admins/shared/error_messages", resource: f.object %>
 
   <%= f.label :name, "ジャンル" %>
   <%= f.text_field :name, autocomplete: "name" %>

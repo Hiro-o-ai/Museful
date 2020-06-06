@@ -1,2 +1,29 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<%= render "layouts/user_header" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>tags</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @article.title %></td>
+      <td>
+        <% @article.article_genres.each do |genre_map| %>
+          <%= genre_map.genre.name %>
+        <% end %>
+      </td>
+      <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+      <td><%= @article.content.html_safe %></td>
+      <td>
+        <%= link_to "Edit", edit_article_path(@article) %>
+        <%= link_to "Destroy", article_path(@article), method: :delete, "data-confirm" => "Are you sure?" %>
+      </td>
+    </tr>
+  </tbody>
+</table>

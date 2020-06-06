@@ -1,2 +1,19 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<%= render "layouts/user_header" %>
+
+<h3>新規投稿</h3>
+<%= form_with(url: questions_path, model:@question, local:true) do |f| %>
+  <%= render "admins/shared/error_messages", resource: f.object %>
+  
+  <%= f.label :title %>
+  <%= f.text_field :title, class:"form-control"  %>
+  <!-- include_hidden: falseは"genre_ids"=>[""]を防ぐため -->
+  <%= f.collection_check_boxes(:genre_ids, @genres, :id, :name, include_hidden: false) do |b| %>
+    <%= b.label { b.check_box + b.text } %>
+  <% end %>
+  <br>
+  <%= f.label :content %>
+  <%= f.text_area :content, 'data-provider': :summernote %>
+  
+  <%= f.submit "投稿する", class:"btn  btn-block btn-primary" %>
+
+<% end %>

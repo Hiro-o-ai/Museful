@@ -74,12 +74,18 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 # デザイン用
-gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
+# リッチテキスト用、デザイン用
+gem 'bootstrap'
+gem 'summernote-rails', '~> 0.8.10.0'
+
 
 # デバック用
 gem 'pry-rails'
 
+# ページネーション用
 gem 'kaminari','~> 1.1.1'
 
 gem 'devise'
+
+

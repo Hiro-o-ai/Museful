@@ -17,10 +17,15 @@ Rails.application.routes.draw do
     patch "/leave" => "users#leave_update"
   end
 
+  resources :articles
+  resources :questions
+
   namespace :admins do
     get "/" => "tops#top"
     resources :users, only: [:index, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :articles, only: [:index, :show, :destroy]
+    resources :questions, only: [:index, :show, :destroy]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
