@@ -2,41 +2,41 @@
   <tr>
     <th>title</th>
     <th>rate</th>
-    <th>answer</th>
+    <th>comment</th>
     <th>time</th>
     <th></th>
   </tr>
 </thead>
 <tbody>
-  <% question.answers.each do |answer| %>
-    <tr class="answer-<%= answer.id %>">
+  <% article.comments.each do |comment| %>
+    <tr id="comment-<%= comment.id %>">
       <td>
-        <%= answer.title %>
+        <%= comment.title %>
       </td>
       <td>
-        <div id="star-rate-<%= answer.id %>"></div>
+        <div id="star-rate-<%= comment.id %>"></div>
       </td>
       <td>
-        <%= answer.content %>
+        <%= comment.content %>
       </td>
       <td>
-        <%= answer.created_at.strftime("%Y/%m/%d") %>
+        <%= comment.created_at.strftime("%Y/%m/%d") %>
       </td>
       <td>
-        <% if answer.user == current_user %>
-          <%= link_to "Destroy", question_answers_path(question, answer), method: :delete, remote: true, class:"btn  btn-success btn-sm", "data-confirm" => "本当に削除してもよろしいですか？" %>
+        <% if comment.user == current_user %>
+          <%= link_to "Destroy", article_comment_path(article, comment), method: :delete, remote: true, class:"btn  btn-success btn-sm", "data-confirm" => "本当に削除してもよろしいですか？" %>
         <% end %>
       </td>
     </tr>
     <script>
-      $('#star-rate-<%= answer.id %>').raty({
+      $('#star-rate-<%= comment.id %>').raty({
         size: 36,
         starOff:  '<%= asset_path('star-off.png') %>',
         starOn : '<%= asset_path('star-on.png') %>',
         starHalf: '<%= asset_path('star-half.png') %>',
         half: true,
         readOnly: true,
-        score: <%= answer.rate %>,
+        score: <%= comment.rate %>,
       });
     </script>
   <% end %>

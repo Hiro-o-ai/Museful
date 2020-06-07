@@ -1,0 +1,2 @@
+$("#comment-table").html("<%= j(render 'comments/comment_list', article: @article ) %>");
+$("#comment-form").html("<%= j(render 'comments/comment_form', article: @article, comment: @comment ) %>");
