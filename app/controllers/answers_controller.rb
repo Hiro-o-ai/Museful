@@ -1,17 +1,18 @@
 class AnswersController < ApplicationController
-  def index
-  end
-
   def create
+    @question = Question.find(params[:question_id])
+    @answer = current_user.answers.new(answer_params)
+    @answer.question_id = @question.id
+    if @answer.save
+    else
+      render '/questions/show'
+    end
   end
 
   def destroy
-  end
-
-  def edit
-  end
-
-  def update
+    question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+    @answer.destroy
   end
 
   private

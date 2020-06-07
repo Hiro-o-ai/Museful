@@ -31,3 +31,11 @@
     </tr>
   </tbody>
 </table>
+
+<%= render "answers/answer_form", question: @question, answer: @answer %>
+
+<h3>Answer index</h3>
+<table id="answer-table">
+  <%= render "answers/answer_list", question: @question %>
+</table>
+

@@ -1,0 +1,29 @@
+<%= form_with url:question_answers_path(question_id: question.id), model:[question, answer], local: true do |f| %>
+  <%= render "admins/shared/error_messages", resource: f.object %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+
+  <div id="star">
+    <%= f.label :rate %>
+    <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+
+  <%= f.label :comment, '口コミ内容' %>
+  <%= f.text_area :comment, class: "form-control" %>
+
+  <%= f.submit '投稿する', class:"btn btn-success" %>
+
+<% end %>
+
+
+<script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'product_comment[rate]',
+    half: true,
+  });
+</script>
