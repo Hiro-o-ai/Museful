@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>tags</th>
       <th>Content</th>
       <th></th>
       <th></th>
@@ -23,6 +24,9 @@
         </td>
         <!-- html_safeメソッドでエスケープ処理を防ぐ -->
         <td><%= article.content.html_safe %></td>
+        <td id="article_<%= article.id %>">
+          <%= render "favorites/favorite", article: article %>
+        </td>
         <td>
           <%= link_to "show", article_path(article) %>
           <%= link_to "Edit", edit_article_path(article) %>

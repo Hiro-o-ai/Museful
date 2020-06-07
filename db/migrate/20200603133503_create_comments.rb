@@ -2,12 +2,10 @@ class CreateComments < ActiveRecord::Migration[5.2]
   def change
     create_table :comments do |t|
       t.references :user, foreign_key: true
-      t.integer :target_id, null: false
+      t.references :article, foreign_key: true
       t.string :title, null: false
       t.text :content, null: false
       t.float :rate, null: false
-      t.integer :status, null: false, default: 1
-      t.integer :case, null: false
 
       t.timestamps
     end

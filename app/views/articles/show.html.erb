@@ -8,6 +8,7 @@
       <th>Content</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,9 @@
       </td>
       <!-- html_safeメソッドでエスケープ処理を防ぐ -->
       <td><%= @article.content.html_safe %></td>
+      <td id="article_<%= @article.id %>">
+        <%= render "favorites/favorite", article: @article %>
+      </td>
       <td>
         <%= link_to "Edit", edit_article_path(@article) %>
         <%= link_to "Destroy", article_path(@article), method: :delete, "data-confirm" => "Are you sure?" %>

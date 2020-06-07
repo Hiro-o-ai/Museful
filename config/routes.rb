@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  # deviseに関わるものが複数あるので、それぞれでコントローラーとルーティングが必要
   root "tops#top"
-  
+
+
+  # deviseに関わるものが複数あるので、それぞれでコントローラーとルーティングが必要
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
   }
@@ -12,13 +13,22 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+
   resources :users, only: [:show, :edit, :update] do
     get "/leave" => "users#leave"
     patch "/leave" => "users#leave_update"
   end
 
-  resources :articles
-  resources :questions
+  resources :articles do
+    resource :favorites, only: [:create, :destroy]
+    resource :comments, only: [:index, :create, :destroy, :edit, :update]
+  end
+
+  resources :questions do
+    resource :responses, only: [:create, :destroy]
+    resource :answers, only: [:index, :create, :destroy, :edit, :update]
+  end
+
 
   namespace :admins do
     get "/" => "tops#top"

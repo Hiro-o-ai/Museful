@@ -1,0 +1,11 @@
+<% if question.resonded_by?(current_user) %>
+  <%= link_to question_responses_path(question), method: :delete, remote: true do %>
+    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= question.responses.count %> シンパシー
+  <% end %>
+<% else %>
+  <%= link_to question_responses_path(question), method: :post, remote: true do %>
+    <i class="fa fa-heart-o" aria-hidden="true"></i>
+    <%= question.responses.count %> シンパシー
+  <% end %>
+<% end %>
