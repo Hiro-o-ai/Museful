@@ -11,6 +11,7 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <% @articles.each do |article| %>
@@ -26,6 +27,9 @@
         <td><%= article.content.html_safe %></td>
         <td id="article_<%= article.id %>">
           <%= render "favorites/favorite", article: article %>
+        </td>
+        <td id="bookmarks_<%= article.id%>">
+          <%= render 'bookmarks/bookmark', article: article %>
         </td>
         <td>
           <%= link_to "show", article_path(article) %>

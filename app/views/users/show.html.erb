@@ -44,4 +44,25 @@
   <% end %>
 </table>
 
+<!-- ブックマーク -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @bookmarks.each do |bookmark| %>
+    <tbody>
+      <tr>
+        <td><%= bookmark.article.title %></td>
+        <td>
+        <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+        <td><%= bookmark.article.content.html_safe %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
 

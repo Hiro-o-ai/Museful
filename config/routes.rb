@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :articles do
+    resource :bookmarks, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy, :update]
   end
