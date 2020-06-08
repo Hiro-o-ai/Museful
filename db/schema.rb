@@ -32,8 +32,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "article_genres", force: :cascade do |t|
@@ -41,8 +39,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_article_genres_on_article_id"
-    t.index ["genre_id"], name: "index_article_genres_on_genre_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -51,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "bookmarks", force: :cascade do |t|
@@ -59,8 +54,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_bookmarks_on_article_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "browsing_histories", force: :cascade do |t|
@@ -68,8 +61,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_browsing_histories_on_article_id"
-    t.index ["user_id"], name: "index_browsing_histories_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -80,8 +71,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.float "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_comments_on_article_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -106,8 +95,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["genre_id"], name: "index_question_genres_on_genre_id"
-    t.index ["question_id"], name: "index_question_genres_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -117,7 +104,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_124409) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "responses", force: :cascade do |t|

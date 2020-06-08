@@ -1,1 +1,2 @@
 $("#comment-<%= @comment.id %>").remove();
+$("#comment-form").html("<%= j(render 'comments/comment_form', article: @article, comment: @comment_new ) %>");

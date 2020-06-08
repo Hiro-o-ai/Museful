@@ -22,7 +22,19 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @comment = Comment.new
-    # @exist_comment = Comment.find_by(user_id: current_user.id, article_id: @article.id)
+    # 閲覧履歴用
+    if current_user.browsing_histories.exists?(article_id: @article.id)
+    else
+      new_history = @article.browsing_histories.new
+      new_history.user_id = current_user.id
+      new_history.save
+    end
+    # 閲覧履歴制限用
+    histories_stock_limit = 5
+    histories = current_user.browsing_histories.all
+    if histories.count > histories_stock_limit
+      histories[0].destroy
+    end
   end
 
   def edit

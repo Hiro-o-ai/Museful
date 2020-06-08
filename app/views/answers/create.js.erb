@@ -1,3 +1,2 @@
 $("#answer-table").html("<%= j(render 'answers/answer_list', question: @question ) %>");
-$("#answer_content").val("");
-$("#answer_title").val("");
+$("#answer-form").html("<%= j(render 'answers/answer_form', question: @question, answer: @answer ) %>");

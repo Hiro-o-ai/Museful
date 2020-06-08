@@ -18,4 +18,7 @@ class Question < ApplicationRecord
     responses.where(user_id: user.id).exists?
   end
 
+  def answered_by?(user)
+    answers.where(user_id: user.id).exists?
+  end
 end

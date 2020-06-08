@@ -32,7 +32,10 @@
   </tbody>
 </table>
 
-<%= render "answers/answer_form", question: @question, answer: @answer %>
+
+<div id="answer-form">
+  <%= render "answers/answer_form", question: @question, answer: @answer %>
+</div>
 
 <h3>Answer index</h3>
 <table id="answer-table">

@@ -21,3 +21,27 @@
 <% if @user == current_user %>
   <%= link_to edit_user_path(@user), class: "btn btn-block btn-default" do%>編集する<% end %>
 <% end %>
+
+<!-- 閲覧履歴 -->
+<h3>BrowsingHistory</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @browsing_histories.each do |history| %>
+    <tbody>
+      <tr>
+        <td><%= history.article.title %></td>
+        <td>
+        <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+        <td><%= history.article.content.html_safe %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
+

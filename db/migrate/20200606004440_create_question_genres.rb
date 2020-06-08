@@ -1,8 +1,8 @@
 class CreateQuestionGenres < ActiveRecord::Migration[5.2]
   def change
     create_table :question_genres do |t|
-      t.references :question, foreign_key: true
-      t.references :genre, foreign_key: true
+      t.integer :question_id
+      t.integer :genre_id
 
       t.timestamps
     end

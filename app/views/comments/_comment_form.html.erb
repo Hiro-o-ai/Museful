@@ -1,28 +1,32 @@
-<%= form_with url:article_comments_path(article_id: article.id), model:[article, comment] do |f| %>
-  <%= render "admins/shared/error_messages", resource: f.object %>
+<% if @article.commented_by?(current_user) %>
+<% else %>
+  <%= form_with url:article_comments_path(article_id: article.id), model:[article, comment] do |f| %>
+    <%= render "admins/shared/error_messages", resource: f.object %>
 
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control" %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
 
-  <div id="star">
-    <%= f.label :rate %>
-    <%= f.hidden_field :rate %>
-  </div>
+    <div id="star">
+      <%= f.label :rate %>
+      <%= f.hidden_field :rate %>
+    </div>
 
-  <%= f.label :content %>
-  <%= f.text_area :content, class: "form-control" %>
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control" %>
 
-  <%= f.submit '投稿する', class:"btn btn-success" %>
+    <%= f.submit '投稿する', class:"btn btn-success" %>
+
+  <% end %>
+
+  <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'comment[rate]',
+      half: true,
+    });
+  </script>
 
 <% end %>
-
-<script>
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    scoreName: 'comment[rate]',
-    half: true,
-  });
-</script>

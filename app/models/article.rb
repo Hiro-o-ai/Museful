@@ -4,6 +4,7 @@ class Article < ApplicationRecord
   has_many :article_genres, dependent: :destroy
   # genre_idsメソッドを使用可能にするため
   has_many :genres, :through => :article_genres
+  has_many :browsing_histories, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   belongs_to :user
@@ -16,7 +17,7 @@ class Article < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
-  # def commented_by?(user)
-  #   comments.where(user_id: user.id).exists?
-  # end
+  def commented_by?(user)
+    comments.where(user_id: user.id).exists?
+  end
 end

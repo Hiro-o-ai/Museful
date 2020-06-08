@@ -10,9 +10,11 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    question = Question.find(params[:question_id])
+    @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
     @answer.destroy
+    # answer_formを展開するために使用
+    @answer_new = Answer.new
   end
 
   private

@@ -31,11 +31,15 @@
     </tr>
   </tbody>
 </table>
+
+
 <div id="comment-form">
-  <%= render "comments/comment_form", article: @article, comment: @comment ,exist_comment: @exist_comment %>
+  <%= render "comments/comment_form", article: @article, comment: @comment %>
 </div>
+
 
 <h3>Comment index</h3>
 <table id="comment-table">
   <%= render "comments/comment_list", article: @article %>
 </table>
+

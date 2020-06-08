@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @browsing_histories = @user.browsing_histories.all
   end
 
   def edit
