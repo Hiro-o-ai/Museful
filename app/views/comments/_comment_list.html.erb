@@ -5,6 +5,7 @@
     <th>comment</th>
     <th>time</th>
     <th></th>
+    <th></th>
   </tr>
 </thead>
 <tbody>
@@ -22,9 +23,12 @@
       <td>
         <%= comment.created_at.strftime("%Y/%m/%d") %>
       </td>
+      <td id="like-<%= comment.id %>">
+        <%= render 'likes/like', likeable: comment %>
+      </td>
       <td>
         <% if comment.user == current_user %>
-          <%= link_to "Destroy", article_comment_path(article, comment), method: :delete, remote: true, class:"btn  btn-success btn-sm", "data-confirm" => "本当に削除してもよろしいですか？" %>
+          <%= link_to "Destroy", comment_path(comment), method: :delete, remote: true, class:"btn  btn-success btn-sm", "data-confirm" => "本当に削除してもよろしいですか？" %>
         <% end %>
       </td>
     </tr>

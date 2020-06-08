@@ -21,7 +21,7 @@
       </td>
        <!-- html_safeメソッドでエスケープ処理を防ぐ -->
       <td><%= @question.content.html_safe %></td>
-      <td id="question_<%= @question.id %>">
+      <td id="response-<%= @question.id %>">
         <%= render "responses/response", question: @question %>
       </td>
       <td>

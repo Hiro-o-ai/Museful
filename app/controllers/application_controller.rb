@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  # protect_from_forgeryを無効にするために使用(csrf対策の一部を無効化している)
+  # ない場合はadminログアウト後にuserログアウトをするとInvalidAuthenticityTokenが発生
+  skip_before_action :verify_authenticity_token, raise: false, except: :delete
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)

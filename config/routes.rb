@@ -19,15 +19,19 @@ Rails.application.routes.draw do
     patch "/leave" => "users#leave_update"
   end
 
-  resources :articles do
+  resources :articles, shallow:true do
     resource :bookmarks, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy, :update]
+    resources :comments, only: [:create, :destroy, :update] do
+      resource :likes, only: [:create, :destroy], module: :comments
+    end
   end
 
-  resources :questions do
+  resources :questions, shallow:true do
     resource :responses, only: [:create, :destroy]
-    resources :answers, only: [:create, :destroy, :update]
+    resources :answers, only: [:create, :destroy, :update] do
+      resource :likes, only: [:create, :destroy], module: :answers
+    end
   end
 
 

@@ -25,10 +25,10 @@
         </td>
         <!-- html_safeメソッドでエスケープ処理を防ぐ -->
         <td><%= article.content.html_safe %></td>
-        <td id="article_<%= article.id %>">
+        <td id="favorite-<%= article.id %>">
           <%= render "favorites/favorite", article: article %>
         </td>
-        <td id="bookmarks_<%= article.id%>">
+        <td id="bookmarks-<%= article.id%>">
           <%= render 'bookmarks/bookmark', article: article %>
         </td>
         <td>
