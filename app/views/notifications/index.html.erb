@@ -1,3 +1,5 @@
+<%= render "layouts/user_header" %>
+
 <% if current_user.notifications.present? %>
   <% current_user.notifications.order(created_at: :desc).each do |notification| %>
     <%= render "notifications/#{notification.action}", notification: notification %>

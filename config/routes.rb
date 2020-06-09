@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   root "tops#top"
 
-
   # deviseに関わるものが複数あるので、それぞれでコントローラーとルーティングが必要
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
   }
+
+  namespace :admins do
+    get "/" => "tops#top"
+    resources :users, only: [:index, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :articles, only: [:index, :show, :destroy]
+    resources :questions, only: [:index, :show, :destroy]
+  end
 
   devise_for :users, controllers: {
     sessions:      'users/sessions',
@@ -13,6 +20,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  # ゲストログイン用
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
 
   resources :users, only: [:show, :edit, :update] do
     get "/leave" => "users#leave"
@@ -35,14 +46,6 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index, :update]
-
-  namespace :admins do
-    get "/" => "tops#top"
-    resources :users, only: [:index, :edit, :update]
-    resources :genres, only: [:index, :create, :edit, :update]
-    resources :articles, only: [:index, :show, :destroy]
-    resources :questions, only: [:index, :show, :destroy]
-  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

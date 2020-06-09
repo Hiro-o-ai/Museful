@@ -24,4 +24,11 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :responses, dependent: :destroy
+
+  # ゲストユーザー作成
+  def self.guest
+    find_or_create_by!(nickname: "ゲストユーザー", email: "guest@move.com") do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end

@@ -14,6 +14,7 @@
         <% else %>
           <li><%= link_to articles_path, class: "my-bt" do%>articles<% end %></li>
           <li><%= link_to questions_path, class: "my-bt" do%>questions<% end %></li>
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
           <li><%= link_to new_user_registration_path, class: "my-bt" do%> sign up<% end %></li>
           <li><%= link_to new_user_session_path, class: "my-bt" do%>
           login<% end %></li>
