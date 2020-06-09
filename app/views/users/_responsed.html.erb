@@ -1,0 +1,7 @@
+<%= link_to read_notification_path(notification), class: "dropdown-item border-bottom #{'read' if notification.read?}", method: :patch do %>
+  <%= attachment_image_tag notification.notifiable.user, :image, format:"jpeg", class: "rounded-circle mr-1", fallback: "no_image.jpg", size: "30x30" %>
+  <%= "#{notification.notifiable.user.nickname}" %>があなたの質問に共感しました
+  <div class="text-right">
+    <%= l(notification.created_at, format: :short) %>
+  </div>
+<% end %>

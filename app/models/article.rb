@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   validates :title, :content, :genre_ids, presence: true
 
+
   has_many :article_genres, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :browsing_histories, dependent: :destroy

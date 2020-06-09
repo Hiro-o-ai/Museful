@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: [] do
+    patch :read, on: :member
+  end
 
   namespace :admins do
     get "/" => "tops#top"

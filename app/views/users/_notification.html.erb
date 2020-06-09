@@ -1,0 +1,9 @@
+<% if current_user.notifications.present? %>
+  <% current_user.notifications.order(created_at: :desc).each do |notification| %>
+    <%= render "users/#{notification.action}", notification: notification %>
+  <% end %>
+<% else %>
+  <div class="dropdown-item">
+    お知らせはありません
+  </div>
+<% end %>
