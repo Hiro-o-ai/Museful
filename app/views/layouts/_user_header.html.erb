@@ -6,6 +6,7 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li><%= link_to notifications_path, class: "my-bt" do%>notifications<% end %></li>
           <li><%= link_to articles_path, class: "my-bt" do%>articles<% end %></li>
           <li><%= link_to questions_path, class: "my-bt" do%>questions<% end %></li>
           <li><%= link_to user_path(current_user), class: "my-bt" do%>My Page<% end %></li>

@@ -1,7 +1,9 @@
 class NotificationsController < ApplicationController
-  def read
+  def update
     notification = current_user.notifications.find(params[:id])
-    notification.read! if notification.read?
+    # read!はupdate(read: true)と同じ処理をする
+    notification.read! if notification.unread?
+    # redirect_pathはnotification.rbで定義
     redirect_to notification.redirect_path
   end
 end

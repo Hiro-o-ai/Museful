@@ -10,6 +10,7 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
   belongs_to :user
 
+  # リダイレクト先を出し分けるメソッドを定義
   def redirect_path
     case action.to_sym
     when :commented
