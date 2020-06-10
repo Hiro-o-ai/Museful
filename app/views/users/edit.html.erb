@@ -4,8 +4,9 @@
 
 <%= form_with(url: user_path, model: @user, local:true) do |f| %>
 <%= render 'admins/shared/error_messages', resource: f.object %>
+  
   <%= f.label :image %><br />
-  <%= image_tag "no_image.jpg", id: :img_prev , :size =>'150x150' %>
+  <%= attachment_image_tag @user, :image, format:"jpeg", id: "img_prev", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "100x100" %>
   <%= f.attachment_field :image %>
 
   <div class="field">
