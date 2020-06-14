@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # 閲覧履歴一覧用
-    @browsing_histories = @user.browsing_histories.all
+    @browsing_histories = @user.browsing_histories
     # ブックマーク一覧用
-    @bookmarks = @user.bookmarks.all
+    @bookmarks = @user.bookmarks
+    @articles = @user.articles
+    @questions = @user.questions
   end
 
   def edit

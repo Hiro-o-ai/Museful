@@ -1,69 +1,192 @@
 <%= render "layouts/user_header" %>
 
-<h3>User info</h3>
-<%= attachment_image_tag @user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "100x100" %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>nickname</td>
-      <td> <%= @user.nickname %> </td>
-      <td> <%= @user.status %> </td>
-      <td>introduction</td>
-      <td><%= @user.introduction %>
-    </tr>
-  </tbody>
-</table>
-<% if @user == current_user %>
-  <%= link_to edit_user_path(@user), class: "btn btn-block btn-default" do%>編集する<% end %>
-<% end %>
-
-<!-- 閲覧履歴 -->
-<h3>BrowsingHistory</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th></th>
-    </tr>
-  </thead>
-  <% @browsing_histories.each do |history| %>
-    <tbody>
-      <tr>
-        <td><%= history.article.title %></td>
-        <td>
-        <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-        <td><%= history.article.content.html_safe %></td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
-
-<!-- ブックマーク -->
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th></th>
-    </tr>
-  </thead>
-  <% @bookmarks.each do |bookmark| %>
-    <tbody>
-      <tr>
-        <td><%= bookmark.article.title %></td>
-        <td>
-        <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-        <td><%= bookmark.article.content.html_safe %></td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
-
+<section>
+  <ul class="nav nav-tabs bg-success" role="tablist">
+    <li>
+      <!-- hrefとidを同じにすることでリンクさせる -->
+      <!-- area-selectedで初期画面を選ぶ -->
+      <a href="#profile" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">プロフィール</a>
+    </li>
+    <li>
+      <a href="#history" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">閲覧履歴</a>
+    </li>
+    <li>
+      <a href="#bookmark" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">お気に入り</a>
+    </li>
+    <li>
+      <a href="#article" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">My Article</a>
+    </li>
+    <li>
+      <a href="#question" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">My Question</a>
+    </li>
+  </ul>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="tab-content">
+        <div class="user-info" role="tabpanel" id="profile">
+          <div class="pin"></div>
+          <div class="profile-title">
+            <h4>プロフィール</h4>
+          </div>
+          <div class="row infomation-items">
+            <div class="col-md-4 user-image">
+              <div class="info-item">
+                <%= attachment_image_tag @user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "220x200" %>
+              </div>
+            </div>
+            <div class="col-md-8 info-item">
+              <table class="table table-bordered user-table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>
+                      <%= @user.nickname %> さんについて
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-secondary">
+                    <td>
+                      参加日　　:　<%= @user.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                    </td>
+                  </tr>
+                  <tr class="table-secondary">
+                    <td>
+                      名前　　　:　<%= @user.nickname %>
+                    </td>
+                  </tr>
+                  <tr class="table-secondary">
+                    <td>
+                      自己紹介　:　<%= @user.introduction %>
+                    </td>
+                  </tr>
+                  <tr class="table-secondary">
+                    <td>
+                      <% if @user == current_user %>
+                        <%= link_to edit_user_path(@user), class: "btn btn-block rounded-pill btn-info shadow" do%><i class="fa fa-wrench" aria-hidden="true"></i><% end %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- 閲覧履歴 -->
+        <div class="history-board tab-pane" role="tabpanel" id="history">
+          <div class="history-head">
+            <div class="pin"></div>
+            <div class="history-title">
+              <h4>閲覧履歴</h4>
+            </div>
+          </div>
+          <% @browsing_histories.each do |history| %>
+            <%= link_to article_path(history.article), class: "my-bt" do%>
+              <div class="history-item">
+                <div class="row history-item-head">
+                  <b><%= history.article.title %></b>
+                </div>
+                <% history.article.article_genres.each do |genre_map| %>
+                  <div class="history-item-tag">
+                    <%= genre_map.genre.name %>
+                  </div>
+                <% end %>
+                <div class="col-md-9 history-item-content">
+                  <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+                  <%= history.article.content.html_safe %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <!-- ブックマーク -->
+        <div class="bookmark-board tab-pane" role="tabpanel" id="bookmark">
+          <div class="bookmark-head">
+            <div class="pin"></div>
+            <div class="bookmark-title">
+              <h4>お気に入り</h4>
+            </div>
+          </div>
+          <% @bookmarks.each do |bookmark| %>
+            <%= link_to article_path(bookmark.article) do%>
+              <div class="bookmark-item">
+                <div class="row bookmark-item-head">
+                  <b><%= bookmark.article.title %></b>
+                </div>
+                <% bookmark.article.article_genres.each do |genre_map| %>
+                  <div class="bookmark-item-tag">
+                    <%= genre_map.genre.name %>
+                  </div>
+                <% end %>
+                <div class="col-md-9 bookmark-item-content">
+                  <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+                  <%= bookmark.article.content.html_safe %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <!-- 記事一覧 -->
+        <div class="article-board tab-pane" role="tabpanel" id="article">
+          <div class="article-head">
+            <div class="pin"></div>
+            <div class="article-title">
+              <h4>My Article</h4>
+            </div>
+          </div>
+          <div class="new-article">
+            <%= link_to new_article_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
+          </div>
+          <% @articles.each do |article| %>
+            <%= link_to article_path(article) do%>
+              <div class="article-item">
+                <div class="row article-item-head">
+                  <b><%= article.title %></b>
+                </div>
+                <% article.article_genres.each do |genre_map| %>
+                  <div class="article-item-tag">
+                    <%= genre_map.genre.name %>
+                  </div>
+                <% end %>
+                <div class="col-md-9 article-item-content">
+                  <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+                  <%= article.content.html_safe %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <!-- 質問一覧 -->
+        <div class="question-board tab-pane" role="tabpanel" id="question">
+          <div class="question-head">
+            <div class="pin"></div>
+            <div class="history-title">
+              <h4>My Question</h4>
+            </div>
+          </div>
+          <div class="new-quesiton">
+            <%= link_to new_article_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
+          </div>
+          <% @questions.each do |question| %>
+            <%= link_to question_path(question) do%>
+              <div class="question-item">
+                <div class="row question-item-head">
+                  <b><%= question.title %></b>
+                </div>
+                <% question.question_genres.each do |genre_map| %>
+                  <div class="question-item-tag">
+                    <%= genre_map.genre.name %>
+                  </div>
+                <% end %>
+                <div class="col-md-9 question-item-content">
+                  <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+                  <%= question.content.html_safe %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 

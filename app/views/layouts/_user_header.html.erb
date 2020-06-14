@@ -1,25 +1,42 @@
-<div class="header" id="header">
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      <h3>Museful</h3>
+<nav class="navbar navbar-expand navbar-default bg-dark fixed-top">
+  <div class="navbar-brand ml-5">
+    <%= link_to root_path do %>
+      <%= image_tag 'logo.png', size: '80x30' %>
+    <% end %>
+  </div>
+  <ul class="navbar-nav ml-auto">
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to notifications_path, class: "nav-link" do%><i class="fa fa-bell" aria-hidden="true"></i> 通知<% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to user_path(current_user), class: "nav-link" do%><i class="fa fa-user-circle-o" aria-hidden="true"></i> マイページ<% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do%><i class="fa fa-sign-out" aria-hidden="true"></i> ログアウト<% end %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link" do%><i class="fa fa-user-o" aria-hidden="true"></i>ゲストログイン（閲覧用）<% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_user_registration_path, class: "nav-link" do%><i class="fa fa-user-plus" aria-hidden="true"></i> 新規登録<% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_user_session_path, class: "nav-link" do%><i class="fa fa-sign-in" aria-hidden="true"></i> ログイン<% end %>
+      </li>
+    <% end %>
+    <div class="dropdown mr-4">
+      <button class="btn btn-light dropdown-toggle dropdown-header" data-toggle="dropdown">
+      </button>
+      <div class="dropdown-menu">
+       <li class="nav-item">
+        <%= link_to articles_path, class: "nav-link" do%>記事一覧<% end %>
+        </li>
+        <li class="nav-item">
+        <%= link_to questions_path, class: "nav-link" do%>質問一覧<% end %>
+        </li>
       </div>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li><%= link_to notifications_path, class: "my-bt" do%>notifications<% end %></li>
-          <li><%= link_to articles_path, class: "my-bt" do%>articles<% end %></li>
-          <li><%= link_to questions_path, class: "my-bt" do%>questions<% end %></li>
-          <li><%= link_to user_path(current_user), class: "my-bt" do%>My Page<% end %></li>
-         <li><%= link_to destroy_user_session_path, method: :delete, class: "my-bt" do%>logout<% end %></li>
-        <% else %>
-          <li><%= link_to articles_path, class: "my-bt" do%>articles<% end %></li>
-          <li><%= link_to questions_path, class: "my-bt" do%>questions<% end %></li>
-          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
-          <li><%= link_to new_user_registration_path, class: "my-bt" do%> sign up<% end %></li>
-          <li><%= link_to new_user_session_path, class: "my-bt" do%>
-          login<% end %></li>
-        <% end %>
-      </ul>
     </div>
-  </nav>
-</div>
+  </ul>
+</nav>

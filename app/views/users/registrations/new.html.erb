@@ -1,38 +1,43 @@
 
 <%= render "layouts/user_header" %>
 
-<h2>Sign up</h2>
+<section class="form">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-4 form-user">
+        <div class="pin"></div>
+        <div class="form-title">
+          <h3><b>ユーザー登録</b></h3>
+        </div>
 
-<%= form_with(url: registration_path(resource_name), model: resource, as: resource_name, local:true) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-body">
+          <%= form_with(url: registration_path(resource_name), model: resource, as: resource_name, local:true) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="form-group">
+              <label class="control-label sr-only" for="nickname">ニックネーム</label>
+              <%= f.text_field :nickname, autofocus: true, class: "form-control ", placeholder:"ニックネーム"%>
+            </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+            <div class="form-group">
+              <label class="control-label sr-only" for="user_email">メールアドレス</label>
+              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder:"メールアドレス" %>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label sr-only" for="user_password">パスワード</label>
+              <%= f.password_field :password, autofocus: true, class: "form-control", placeholder:"パスワード(半角英数字で6文字以上)" %>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label sr-only" for="user_password_confirmation">パスワード承認</label>
+              <%= f.password_field :password_confirmation, autofocus: true, class: "form-control", placeholder:"パスワード確認" %>
+            </div>
+
+            <%= f.submit "新規登録", class:"btn btn-lg btn-block btn-primary shadow" %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</section>

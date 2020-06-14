@@ -1,4 +1,0 @@
-notifications_path
-
-
-<#%= link_to "コメントか回答", question_path(notification.notifiable.question) %>
