@@ -1,21 +1,30 @@
 <%= render "layouts/admin_header" %>
 
+<div class="container-fluid admin">
+  <div class="row justify-content-center">
+    <div class="col-md-6 admin-user">
+      <div class="pin"></div>
+      <div class="admin-user-title">
+        <h3><%= @user.nickname %>さんの会員情報編集</h3>
+      </div>
+      <%= form_with(url: admins_user_path, model: @user, local:true) do |f| %>
+        <%= render "devise/shared/error_messages", resource: f.object %>
 
-<h3><%= @user.nickname %>さんの会員情報編集</h3>
+        <div class="form-group">
+          <label class="control-label" for="user_nickname">ニックネーム</label>
+          <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder:"ニックネーム"%>
+        </div><br>
 
-<h4>会員ID</h4>
-<%= @user.id %>
+        <div class="form-group">
+          <label class="control-label" for="user_status">ステータス</label><br>
+          <label><%=f.radio_button :status, "有効" %>有効</label>
+          <label><%=f.radio_button :status, "退会済" %>退会済</label>
+        </div>
 
-<%= form_with(url: admins_user_path, model: @user, local:true) do |f| %>
+        <%= f.submit "編集内容を保存", class:"btn btn-lg btn-block btn-success shadow" %>
 
-  <%= render "devise/shared/error_messages", resource: f.object %>
-  
-  <%= f.label :nickname, "ニックネーム" %>
-  <%= f.text_field :nickname %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  <%= f.label :status, "会員ステータス" %>
-  <label><%=f.radio_button :status, "有効" %>有効</label>
-  <label><%=f.radio_button :status, "退会済" %>退会済</label>
-
-  <%= f.submit "変更を保存する", class: "btn btn-primary btn-md" %>
-<% end %>

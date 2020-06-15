@@ -32,7 +32,7 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to "編集する",edit_admins_user_path(user), class: "btn btn-primary btn-md" %>
+                <%= link_to edit_admins_user_path(user), class: "btn btn-success btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
               </td>
             </tr>
           <% end %>
