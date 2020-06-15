@@ -52,6 +52,12 @@
   height:50px;
   }
 
+  .admin-question-content{
+  white-space: nowrap;
+  height:50px;
+  }
+
+
 
   .admin-login-form {
   padding-bottom: 20px;
@@ -85,6 +91,18 @@
   margin-bottom:50px;
   }
 
+  .admin-question {
+  padding: 30px 50px;
+  background-color: #dcdcdc;
+  border-left: solid 40px #696969;
+  margin: 80px 0;
+  box-shadow: 7px 7px;
+  }
+
+  .admin-question-title{
+  margin-bottom:50px;
+  }
+
   .admin-table {
   background-color: #fffffc;
   text-align:center;
@@ -94,6 +112,72 @@
   .admin-tr{
   background-color:#f8fbf8;
   }
+
+  .admin-article-board {
+  background-color: #e7e7eb;
+  border-left: solid 40px #b44c97;
+  box-shadow: 7px 7px;
+  margin-top: 100px;
+  padding: 0 0 20px 20px;
+  }
+
+
+  .admin-article-head {
+    padding-left: 40px;
+    .pin{
+    margin-top:25px;
+    }
+    .admin-article-head-title{
+    padding: 30px 0 0 50px;
+    font-family: cursive, fantasy;
+    }
+  }
+
+  .admin-article-box{
+    .article-title {
+    margin-bottom:50px;
+    font-size:25px;
+    }
+    .admin-article-user {
+    margin: 0 0 40px 20px;
+    font-size:18px;
+    }
+    .article-content {
+    padding: 0 0 30px 35px;
+    }
+  }
+
+  .admin-question-board {
+  background-color: #e7e7eb;
+  border-left: solid 40px #b44c97;
+  box-shadow: 7px 7px;
+  margin-top: 100px;
+  padding: 0 0 20px 20px;
+    .admin-question-head {
+      padding-left: 40px;
+      .pin{
+      margin-top:25px;
+      }
+      .admin-question-head-title{
+      padding: 30px 0 0 50px;
+      font-family: cursive, fantasy;
+      }
+    }
+    .admin-question-box{
+      .question-title {
+      margin-bottom:50px;
+      font-size:25px;
+      }
+      .admin-question-user {
+      margin: 0 0 40px 20px;
+      font-size:18px;
+      }
+      .question-content {
+      padding: 0 0 30px 35px;
+      }
+    }
+  }
+
 
 
 
@@ -304,10 +388,6 @@
     margin-right: 8px;
   }
 
-  .article-item-time {
-  padding-left: 150px;
-  }
-
   .article-item-content {
   padding-left: 30px;
   }
@@ -352,10 +432,6 @@
     content: '●';
     color: white;
     margin-right: 8px;
-  }
-
-  .question-item-time {
-  padding-left: 150px;
   }
 
   .question-item-content {

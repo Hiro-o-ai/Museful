@@ -1,28 +1,37 @@
 <%= render "layouts/admin_header" %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>tags</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @article.title %></td>
-      <td>
-        <% @article.article_genres.each do |genre_map| %>
-          <%= genre_map.genre.name %>
-        <% end %>
-      </td>
-      <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-      <td><%= @article.content.html_safe %></td>
-      <td>
-        <%= link_to "Destroy", admins_article_path(@article), method: :delete, "data-confirm" => "Are you sure?" %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-fluid admin">
+  <div class="row justify-content-center">
+    <div class="col-md-10 admin-article-detail">
+      <div class="admin-article-board">
+        <div class="admin-article-head">
+          <div class="pin"></div>
+          <div class="admin-article-head-title">
+            <h2>Article</h2>
+          </div>
+        </div>
+        <div class="admin-article-box">
+          <div class="row article-title">
+            <b><%= @article.title %></b>
+          </div>
+          <div class="row admin-article-user">
+            <div class="col-md-1 user-image">
+              <%= attachment_image_tag @user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "55x40" %>
+            </div>
+            <div class="col-md-4 user-name">
+            <%= @article.user.nickname %>さん
+            </div>
+          </div>
+          <div class="col-md-11 article-content">
+            <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+            <%= @article.content.html_safe %>
+          </div>
+          <div class="offset-md-10 col-md-2">
+            <%= link_to admins_article_path(@article), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-success btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

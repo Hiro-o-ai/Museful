@@ -15,6 +15,7 @@
             <th>タイトル</th>
             <th>カテゴリー</th>
             <th>内容</th>
+            <th>投稿日時</th>
             <th></th>
           </tr>
         </thead>
@@ -33,6 +34,7 @@
               </td>
               <!-- html_safeメソッドでエスケープ処理を防ぐ -->
               <td><div class="admin-article-content overflow-auto"><%= article.content.html_safe %></div></td>
+              <td><div class="admin-article-content overflow-auto"><%= article.created_at.strftime("%Y-%m-%d %H:%M:%S") %></div></td>
               <td>
                 <div class="admin-article-content">
                   <%= link_to admins_article_path(article), class: "btn btn-success btn-md" do%><i class="fa fa-search-plus" aria-hidden="true"></i> 詳細<% end %>

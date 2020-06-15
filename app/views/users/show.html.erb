@@ -164,7 +164,7 @@
             </div>
           </div>
           <div class="new-quesiton">
-            <%= link_to new_article_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
+            <%= link_to new_question_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
           </div>
           <% @questions.each do |question| %>
             <%= link_to question_path(question) do%>

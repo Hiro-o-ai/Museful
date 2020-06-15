@@ -1,32 +1,50 @@
 <%= render "layouts/admin_header" %>
 
-<h3>questions</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <% @questions.each do |question| %>
-    <tbody>
-      <tr>
-        <td><%= question.title %></td>
-        <td>
-          <% question.question_genres.each do |genre_map| %>
-            <%= genre_map.genre.name %>
+<div class="container-fluid admin">
+  <div class="row justify-content-center">
+    <div class="col-md-11 admin-question">
+      <div class="pin"></div>
+      <div class="admin-question-title">
+        <h3>質問一覧</h3>
+      </div>
+
+      <table class="table admin-table table-hover">
+        <thead>
+          <tr class="admin-tr">
+            <th>投稿者</th>
+            <th>タイトル</th>
+            <th>カテゴリー</th>
+            <th>内容</th>
+            <th>投稿日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @questions.each do |question| %>
+            <tr>
+              <!-- overflow-autoと幅と高さの指定と折り返し設定で、スクロール -->
+              <td><div class="admin-question-content overflow-auto"><%= question.user.nickname %></div></td>
+              <td><div class="admin-question-content overflow-auto"><%= question.title %></div></td>
+              <td>
+                <div class="admin-question-content overflow-auto">
+                  <% question.question_genres.each do |genre_map| %>
+                    <%= genre_map.genre.name %>
+                  <% end %>
+                </div>
+              </td>
+              <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+              <td><div class="admin-question-content overflow-auto"><%= question.content.html_safe %></div></td>
+              <td><div class="admin-question-content overflow-auto"><%= question.created_at.strftime("%Y-%m-%d %H:%M:%S") %></div></td>
+              <td>
+                <div class="admin-question-content">
+                  <%= link_to admins_question_path(question), class: "btn btn-success btn-md" do%><i class="fa fa-search-plus" aria-hidden="true"></i> 詳細<% end %>
+                  <%= link_to admins_question_path(question), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-success btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
+                </div>
+              </td>
+            </tr>
           <% end %>
-        </td>
-        <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-        <td><%= question.content.html_safe %></td>
-        <td>
-          <%= link_to "show", admins_question_path(question) %>
-          <%= link_to "Destroy", admins_question_path(question), method: :delete, "data-confirm" => "Are you sure?" %>
-        </td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
