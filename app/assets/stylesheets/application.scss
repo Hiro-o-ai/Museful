@@ -109,6 +109,11 @@
   table-layout: fixed;
   }
 
+  .admin-user-table {
+  background-color: #fffffc;
+  text-align:center;
+  }
+
   .admin-tr{
   background-color:#f8fbf8;
   }
@@ -178,7 +183,35 @@
     }
   }
 
+  .admin-genre {
+  padding: 30px 50px;
+  background-color: #dcdcdc;
+  border-left: solid 40px #696969;
+  margin: 80px 0;
+  box-shadow: 7px 7px;
+    .admin-genre-title{
+    margin-bottom:50px;
+    }
+  }
 
+  .genre-index-box {
+  padding: 30px 50px;
+  background-color: #dcdcdc;
+  border-left: solid 40px #696969;
+  margin-top: 80px;
+  box-shadow: 7px 7px;
+    .admin-genre-index-title {
+    margin-bottom: 50px;
+    }
+    .row{
+      .admin-genre-article-title{
+      font-family: cursive, fantasy;
+      }
+      .admin-genre-question-title{
+      font-family: cursive, fantasy;
+      }
+    }
+  }
 
 
   .form-user {

@@ -8,6 +8,9 @@ class Like < ApplicationRecord
   # モデルに紐づくインスタンスがcreateされた後で実行する
   after_create_commit :create_notifications
   private
+  # likeableはcommentかanswerのidやtypeが保存されている
+  # userはされる方のuserなので、commentやanswerに紐づくユーザーIDを持ってきている
+  # selfでcommentやanswerのidとtypeが入る
   def create_notifications
     Notification.create(notifiable: self, user: likeable.user, action: :liked)
   end

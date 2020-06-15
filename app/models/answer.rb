@@ -15,6 +15,8 @@ class Answer < ApplicationRecord
   # モデルに紐づくインスタンスがcreateされた後で実行する
   after_create_commit :create_notifications
   private
+  # userはされる方のuserなので、questionに紐づくユーザーIDを持ってきている
+  # selfでanswerのidとtypeが入る
   def create_notifications
     Notification.create(notifiable: self, user: question.user, action: :answered)
   end

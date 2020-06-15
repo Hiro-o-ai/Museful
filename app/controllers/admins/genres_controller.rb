@@ -1,7 +1,8 @@
 class Admins::GenresController < ApplicationController
   def index
-    @genres = Genre.all
     @genre = Genre.new
+    @article_genres = Genre.where(case:"記事")
+    @question_genres = Genre.where(case:"質問")
   end
 
   def create
@@ -9,7 +10,8 @@ class Admins::GenresController < ApplicationController
     if @genre.save
       redirect_to admins_genres_path
     else
-      @genres = Genre.all
+      @article_genres = Genre.where(case:"記事")
+      @question_genres = Genre.where(case:"質問")
       render :index
     end
   end

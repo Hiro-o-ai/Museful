@@ -9,6 +9,8 @@ class Favorite < ApplicationRecord
   # モデルに紐づくインスタンスがcreateされた後で実行する
   after_create_commit :create_notifications
   private
+  # userはされる方のuserなので、articleに紐づくユーザーIDを持ってきている
+  # selfでfavoriteのidとtypeが入る
   def create_notifications
     Notification.create(notifiable: self, user: article.user, action: :favorited)
   end

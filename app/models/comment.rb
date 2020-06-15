@@ -12,6 +12,8 @@ class Comment < ApplicationRecord
   # モデルに紐づくインスタンスがcreateされた後で実行する
   after_create_commit :create_notifications
   private
+  # userはされる方のuserなので、articleに紐づくユーザーIDを持ってきている
+  # selfでcommentのidとtypeが入る
   def create_notifications
     Notification.create(notifiable: self, user: article.user, action: :commented)
   end

@@ -1,29 +1,35 @@
 <%= render "layouts/admin_header" %>
 
-<h3>ジャンル編集</h3>
+<div class="container-fluid admin">
+  <div class="row justify-content-center">
+    <div class="col-md-6 admin-user">
+      <div class="pin"></div>
+      <div class="admin-user-title">
+        <h3>ジャンル編集</h3>
+      </div>
+      <%= form_with(url: admins_genre_path, model:@genre, local:true) do |f| %>
+        <%= render "admins/shared/error_messages", resource: f.object %>
 
-<%= form_with(url: admins_genre_path, model:@genre, local:true) do |f| %>
+        <div class="form-group">
+          <label class="control-label" for="genre_name">ニックネーム</label>
+          <%= f.text_field :name, autofocus: true, class: "form-control", placeholder:"ジャンル名"%>
+        </div><br>
 
-  <%= render "admins/shared/error_messages", resource: f.object %>
+        <div class="form-group">
+          <label class="control-label" for="genre_case">タイプ</label><br>
+          <label><%=f.radio_button :case, "記事" %>記事</label>
+          <label><%=f.radio_button :case, "質問" %>質問</label>
+        </div>
 
-  <%= f.label :name, "ジャンル" %>
-  <%= f.text_field :name, autocomplete: "name" %>
+        <div class="form-group">
+          <label class="control-label" for="genre_status">ステータス</label><br>
+          <label><%=f.radio_button :status, "有効" %>有効</label>
+          <label><%=f.radio_button :status, "無効" %>無効</label>
+        </div>
 
-  <label>
-    <%= f.radio_button :case, "記事" %> 記事
-  </label>
-  <label>
-    <%= f.radio_button :case, "質問" %> 質問
-  </label>
+        <%= f.submit "編集内容を保存", class:"btn btn-lg btn-block btn-success shadow" %>
 
-
-  <label>
-    <%= f.radio_button :status, "有効" %> 有効
-  </label>
-  <label>
-    <%= f.radio_button :status, "無効" %> 無効
-  </label>
-
-  <%= f.submit "変更を保存",class: "btn btn-primary btn-md" %>
-
-<% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
