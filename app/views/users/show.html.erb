@@ -83,7 +83,7 @@
             <%= link_to article_path(history.article), class: "my-bt" do%>
               <div class="history-item">
                 <div class="row history-item-head">
-                  <b><%= history.article.title %></b>
+                  <h3><b><%= history.article.title %></b></h3>
                 </div>
                 <% history.article.article_genres.each do |genre_map| %>
                   <div class="history-item-tag">
@@ -110,7 +110,7 @@
             <%= link_to article_path(bookmark.article) do%>
               <div class="bookmark-item">
                 <div class="row bookmark-item-head">
-                  <b><%= bookmark.article.title %></b>
+                  <h3><b><%= bookmark.article.title %></b></h3>
                 </div>
                 <% bookmark.article.article_genres.each do |genre_map| %>
                   <div class="bookmark-item-tag">
@@ -130,59 +130,77 @@
           <div class="article-head">
             <div class="pin"></div>
             <div class="article-title">
-              <h4>My Article</h4>
+              <h3>My Article</h3>
             </div>
           </div>
           <div class="new-article">
             <%= link_to new_article_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
           </div>
           <% @articles.each do |article| %>
-            <%= link_to article_path(article) do%>
-              <div class="article-item">
-                <div class="row article-item-head">
-                  <b><%= article.title %></b>
+            <div class="article-item">
+              <div class="row article-item-head">
+                <h3><b><%= article.title %></b></h3>
+              </div>
+              <% article.article_genres.each do |genre_map| %>
+                <div class="article-item-tag">
+                  <%= genre_map.genre.name %>
                 </div>
-                <% article.article_genres.each do |genre_map| %>
-                  <div class="article-item-tag">
-                    <%= genre_map.genre.name %>
-                  </div>
-                <% end %>
-                <div class="col-md-9 article-item-content">
-                  <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-                  <%= article.content.html_safe %>
+              <% end %>
+              <div class="col-md-9 article-item-content">
+                <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+                <%= article.content.html_safe %>
+              </div>
+              <div class="row link-box">
+                <div class="offset-md-6 show">
+                   <%= link_to article_path(article), class: "btn btn-primary btn-md" do%><i class="fa fa-search-plus" aria-hidden="true"></i> 詳細<% end %>
+                </div>
+                <div class="edit">
+                  <%= link_to edit_article_path(article), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
+                </div>
+                <div class="destroy">
+                  <%= link_to article_path(article), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
                 </div>
               </div>
-            <% end %>
+            </div>
           <% end %>
         </div>
         <!-- 質問一覧 -->
         <div class="question-board tab-pane" role="tabpanel" id="question">
           <div class="question-head">
             <div class="pin"></div>
-            <div class="history-title">
-              <h4>My Question</h4>
+            <div class="question-title">
+              <h3>My Question</h3>
             </div>
           </div>
           <div class="new-quesiton">
             <%= link_to new_question_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
           </div>
           <% @questions.each do |question| %>
-            <%= link_to question_path(question) do%>
-              <div class="question-item">
-                <div class="row question-item-head">
-                  <b><%= question.title %></b>
+            <div class="question-item">
+              <div class="row question-item-head">
+                <h3><b><%= question.title %></b></h3>
+              </div>
+              <% question.question_genres.each do |genre_map| %>
+                <div class="question-item-tag">
+                  <%= genre_map.genre.name %>
                 </div>
-                <% question.question_genres.each do |genre_map| %>
-                  <div class="question-item-tag">
-                    <%= genre_map.genre.name %>
-                  </div>
-                <% end %>
-                <div class="col-md-9 question-item-content">
-                  <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-                  <%= question.content.html_safe %>
+              <% end %>
+              <div class="col-md-9 question-item-content">
+                <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+                <%= question.content.html_safe %>
+              </div>
+              <div class="row link-box">
+                <div class="offset-md-6 show">
+                   <%= link_to question_path(question), class: "btn btn-primary btn-md" do%><i class="fa fa-search-plus" aria-hidden="true"></i> 詳細<% end %>
+                </div>
+                <div class="edit">
+                  <%= link_to edit_question_path(question), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
+                </div>
+                <div class="destroy">
+                  <%= link_to question_path(question), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
                 </div>
               </div>
-            <% end %>
+            </div>
           <% end %>
         </div>
       </div>

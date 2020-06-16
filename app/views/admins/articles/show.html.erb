@@ -16,7 +16,7 @@
           </div>
           <div class="row admin-article-user">
             <div class="col-md-1 user-image">
-              <%= attachment_image_tag @user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "55x40" %>
+              <%= attachment_image_tag @article.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
             </div>
             <div class="col-md-4 user-name">
             <%= @article.user.nickname %>さん

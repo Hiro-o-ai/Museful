@@ -140,7 +140,7 @@
 
   .admin-article-box{
     .article-title {
-    margin-bottom:50px;
+    margin-bottom: 10px;
     font-size:25px;
     }
     .admin-article-user {
@@ -170,7 +170,7 @@
     }
     .admin-question-box{
       .question-title {
-      margin-bottom:50px;
+      margin-bottom:10px;
       font-size:25px;
       }
       .admin-question-user {
@@ -201,8 +201,8 @@
   margin-top: 80px;
   box-shadow: 7px 7px;
     .admin-genre-index-title {
-    margin-bottom: 50px;
-    }
+      margin-bottom: 50px;
+      }
     .row{
       .admin-genre-article-title{
       font-family: cursive, fantasy;
@@ -388,7 +388,8 @@
   }
 
   .article-title{
-  padding: 35px 0 0 60px;
+  padding: 35px 0 20px 60px;
+  font-family: cursive, fantasy;
   }
 
   .article-item {
@@ -434,7 +435,8 @@
   }
 
   .question-title{
-  padding: 35px 0 0 60px;
+  padding: 35px 0 20px 60px;
+  font-family: cursive, fantasy;
   }
 
   .question-item {
@@ -471,8 +473,76 @@
   padding-left: 30px;
   }
 
+  .response-box {
+  padding-top:15px;
+  }
 
+  .favorite {
+  padding-left:45px;
+  }
 
+  .link-box {
+    div{
+    padding: 20px 10px;
+    }
+  }
+
+  .response {
+  padding-left:45px;
+  }
+
+  .article-box {
+    .article-box-head {
+    padding:10px 0 30px 50px;
+    }
+    .article-user {
+    margin: 0 0 10px 20px;
+    font-size:18px;
+    }
+    .article-content {
+    padding: 20px 0 10px 30px;
+    }
+  }
+
+  .article-box {
+    .article-box-head {
+    padding:10px 0 30px 50px;
+    }
+    .article-user {
+    margin: 0 0 10px 20px;
+    font-size:18px;
+    }
+    .article-content {
+    padding: 20px 0 10px 30px;
+    }
+  }
+
+  .question-box {
+    .question-box-head {
+    padding:10px 0 30px 50px;
+    }
+    .question-user {
+    margin: 0 0 10px 20px;
+    font-size:18px;
+    }
+    .question-content {
+    padding: 20px 0 10px 30px;
+    }
+  }
+
+  .form-article {
+  padding-bottom: 20px;
+  background-color: #DDFFFF;
+  border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
+  }
+
+  .form-question {
+  padding-bottom: 20px;
+  background-color: #DDFFFF;
+  border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
+  }
 
 
 

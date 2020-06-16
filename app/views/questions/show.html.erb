@@ -1,36 +1,54 @@
 <%= render "layouts/user_header" %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>tags</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @question.title %></td>
-      <td>
-        <% @question.question_genres.each do |genre_map| %>
-          <%= genre_map.genre.name %>
-        <% end %>
-      </td>
-       <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-      <td><%= @question.content.html_safe %></td>
-      <td id="response-<%= @question.id %>">
-        <%= render "responses/response", question: @question %>
-      </td>
-      <td>
-        <%= link_to "Edit", edit_question_path(@question) %>
-        <%= link_to "Destroy", question_path(@question), method: :delete, "data-confirm" => "Are you sure?" %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<section>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-10 article-board">
+        <div class="question-head">
+          <div class="pin"></div>
+          <div class="question-title">
+            <h2>Question</h2>
+          </div>
+        </div>
+        <div class="question-box">
+          <div class="row question-box-head">
+            <h3><b><%= @question.title %></b></h3>
+          </div>
+          <div class="row question-user">
+            <div class="col-md-1 user-image">
+              <%= attachment_image_tag @question.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
+            </div>
+            <div class="col-md-6 user-name">
+            <%= @question.user.nickname %>さん
+            </div>
+          </div>
+          <% @question.question_genres.each do |genre_map| %>
+            <div class="question-item-tag">
+              <%= genre_map.genre.name %>
+            </div>
+          <% end %>
+          <div class="col-md-11 question-content">
+            <!-- html_safeメソッドでエスケープ処理を防ぐ -->
+            <%= @question.content.html_safe %>
+          </div>
+          <div class="row response-box">
+            <div class="col-md-3 response" id="response-<%= @question.id %>">
+              <%= render "responses/response", question: @question %>
+            </div>
+          </div>
+          <div class="row link-box">
+            <div class="offset-md-9 edit">
+              <%= link_to edit_question_path(@question), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
+            </div>
+            <div class="destroy">
+              <%= link_to question_path(@question), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <div id="answer-form">

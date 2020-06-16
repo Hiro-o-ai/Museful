@@ -1,19 +1,39 @@
 <%= render "layouts/user_header" %>
 
-<h3>修正</h3>
-<%= form_with(url: article_path, model:@article, local:true) do |f| %>
-  <%= render "admins/shared/error_messages", resource: f.object %>
-  
-  <%= f.label :title %>
-  <%= f.text_field :title, class:"form-control"  %>
-  <!-- include_hidden: falseは"genre_ids"=>[""]を防ぐため -->
-  <%= f.collection_check_boxes(:genre_ids, @genres, :id, :name, include_hidden: false) do |b| %>
-    <%= b.label { b.check_box + b.text } %>
-  <% end %>
-  <br>
-  <%= f.label :content %>
-  <%= f.text_area :content, 'data-provider': :summernote %>
-  
-  <%= f.submit "変更する", class:"btn  btn-block btn-primary" %>
 
-<% end %>
+<section class="form">
+  <div class="container-fluid">
+    <div class="row justify-content-center ">
+      <div class="col-md-11 form-article">
+        <div class="pin"></div>
+        <div class="form-title">
+          <h3><b>記事修正</b></h3>
+        </div>
+
+        <div class="form-body">
+          <%= form_with(url: article_path, model:@article, local:true) do |f| %>
+            <%= render 'admins/shared/error_messages', resource: f.object %>
+            <div class="form-group">
+              <label class="control-label sr-only" for="article_title">タイトル</label>
+              <%= f.text_field :title, autofocus: true, class: "form-control", placeholder:"タイトルを入力してください"%>
+            </div>
+
+            <div class="form-group">
+              <%= f.collection_check_boxes(:genre_ids, @genres, :id, :name, include_hidden: false) do |b| %>
+                <%= b.label { b.check_box + b.text } %>
+              <% end %>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label sr-only" for="article_content">投稿内容</label>
+              <%= f.text_area :content, 'data-provider': :summernote %>
+            </div>
+
+            <%= f.submit "記事内容を変更する", class:"btn btn-lg btn-block btn-primary shadow" %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
