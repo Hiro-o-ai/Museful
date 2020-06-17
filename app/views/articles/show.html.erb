@@ -19,7 +19,10 @@
               <%= attachment_image_tag @article.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
             </div>
             <div class="col-md-4 user-name">
-            <%= @article.user.nickname %>さん
+              <%= @article.user.nickname %>さん
+            </div>
+            <div class="offset-md-4 col-md-3">
+              <%= @article.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
             </div>
           </div>
           <% @article.article_genres.each do |genre_map| %>
@@ -50,18 +53,20 @@
         </div>
       </div>
     </div>
+    <div class="row justify-content-center" id="comment-form">
+      <%= render "comments/comment_form", article: @article, comment: @comment %>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div id="comment-table">
+          <%= render "comments/comment_list", article: @article %>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 
-<div id="comment-form">
-  <%= render "comments/comment_form", article: @article, comment: @comment %>
-</div>
 
-
-<h3>Comment index</h3>
-<table id="comment-table">
-  <%= render "comments/comment_list", article: @article %>
-</table>
 

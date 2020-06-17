@@ -1,47 +1,46 @@
-<thead>
-  <tr>
-    <th>title</th>
-    <th>rate</th>
-    <th>comment</th>
-    <th>time</th>
-    <th></th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
-  <% article.comments.each do |comment| %>
-    <tr id="comment-<%= comment.id %>">
-      <td>
-        <%= comment.title %>
-      </td>
-      <td>
-        <div id="star-rate-<%= comment.id %>"></div>
-      </td>
-      <td>
+<% article.comments.each do |comment| %>
+  <div class="comment-item" id="comment-<%= comment.id %>">
+    <div class="row">
+      <div class="col-md-1">
+        <%= attachment_image_tag comment.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
+      </div>
+      <div class="col-md-4 user-name">
+        <%= comment.user.nickname %>さん
+      </div>
+      <div class="offset-md-4 col-md-3">
+        <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" id="star-rate-<%= comment.id %>"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-11 comment-content">
         <%= comment.content %>
-      </td>
-      <td>
-        <%= comment.created_at.strftime("%Y/%m/%d") %>
-      </td>
-      <td id="like-<%= comment.id %>">
+      </div>
+    </div>
+    <div class="row response-box">
+      <div class="col-md-2"  id="like-<%= comment.id %>">
         <%= render 'likes/like', likeable: comment %>
-      </td>
-      <td>
+      </div>
+    </div>
+    <div class="row link-box">
+      <div class="offset-md-10">
         <% if comment.user == current_user %>
-          <%= link_to "Destroy", comment_path(comment), method: :delete, remote: true, class:"btn  btn-success btn-sm", "data-confirm" => "本当に削除してもよろしいですか？" %>
+          <%= link_to comment_path(comment), method: :delete, remote: true, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
         <% end %>
-      </td>
-    </tr>
-    <script>
-      $('#star-rate-<%= comment.id %>').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: <%= comment.rate %>,
-      });
-    </script>
-  <% end %>
-</tbody>
+      </div>
+    </div>
+  </div>
+  <script>
+    $('#star-rate-<%= comment.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= comment.rate %>,
+    });
+  </script>
+<% end %>

@@ -1,33 +1,33 @@
-<thead>
-  <tr>
-    <th>title</th>
-    <th>answer</th>
-    <th>time</th>
-    <th></th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
   <% question.answers.each do |answer| %>
-    <tr id="answer-<%= answer.id %>">
-      <td>
-        <%= answer.title %>
-      </td>
-      <td>
+    <div class="answer-item" id="answer-<%= answer.id %>">
+      <div class="row">
+      <div class="col-md-1">
+        <%= attachment_image_tag answer.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
+      </div>
+      <div class="col-md-4 user-name">
+        <%= answer.user.nickname %>さん
+      </div>
+      <div class="offset-md-4 col-md-3">
+        <%= answer.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-11 answer-content">
         <%= answer.content %>
-      </td>
-      <td>
-        <%= answer.created_at.strftime("%Y/%m/%d") %>
-      </td>
-      </td>
-      <td id="like-<%= answer.id %>">
+      </div>
+    </div>
+    <div class="row response-box">
+      <div class="col-md-2"  id="like-<%= answer.id %>">
         <%= render 'likes/like', likeable: answer %>
-      </td>
-      <td>
+      </div>
+    </div>
+    <div class="row link-box">
+      <div class="offset-md-10">
         <% if answer.user == current_user %>
-          <%= link_to "Destroy", answer_path(answer), method: :delete, remote: true, class:"btn  btn-success btn-sm", "data-confirm" => "本当に削除してもよろしいですか？" %>
+          <%= link_to answer_path(answer), method: :delete, remote: true, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
         <% end %>
-      </td>
-    </tr>
-  <% end %>
-</tbody>
+      </div>
+    </div>
+  </div>
+<% end %>
+

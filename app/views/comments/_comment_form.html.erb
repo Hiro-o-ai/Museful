@@ -1,32 +1,37 @@
+
 <% if @article.commented_by?(current_user) %>
 <% else %>
-  <%= form_with url:article_comments_path(article_id: article.id), model:[article, comment] do |f| %>
-    <%= render "admins/shared/error_messages", resource: f.object %>
+  <div class="col-md-8 comment-form">
+    <%= form_with url:article_comments_path(article_id: article.id), model:[article, comment] do |f| %>
 
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
+      <div class="form-group">
+        <label class="control-label sr-only" for="article_comment_title">タイトル</label>
+        <%= f.text_field :title, autofocus: true, class: "form-control", placeholder:"タイトルを入力してください" %>
+      </div>
 
-    <div id="star">
-      <%= f.label :rate %>
-      <%= f.hidden_field :rate %>
-    </div>
+      <div class="form-group" id="star">
+        <label class="control-label sr-only" for="article_comment_rate">評価</label>
+        <%= f.hidden_field :rate %>
+      </div>
 
-    <%= f.label :content %>
-    <%= f.text_area :content, class: "form-control" %>
+      <div class="form-group">
+        <label class="control-label sr-only" for="article_comment_content">内容</label>
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
 
-    <%= f.submit '投稿する', class:"btn btn-success" %>
+      <%= f.submit '評価する', class:"btn btn-lg btn-block btn-primary shadow" %>
 
-  <% end %>
+    <% end %>
+  </div>
 
-  <script>
-    $('#star').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'comment[rate]',
-      half: true,
-    });
-  </script>
-
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'comment[rate]',
+        half: true,
+      });
+    </script>
 <% end %>
