@@ -7,7 +7,14 @@
   <ul class="navbar-nav ml-auto">
     <% if user_signed_in? %>
       <li class="nav-item">
-        <%= link_to notifications_path, class: "nav-link" do%><i class="fa fa-bell" aria-hidden="true"></i> 通知<% end %>
+        <!-- notification.helperに記述 -->
+        <%= link_to notifications_path, class: "nav-link" do%>
+          <% if unchecked_notifications.any? %>
+            <i class="fa fa-bell" style="color: gold;"></i>
+          <% else %>
+            <i class="fa fa-bell" aria-hidden="true"></i>
+          <% end %>通知
+        <% end %>
       </li>
       <li class="nav-item">
         <%= link_to user_path(current_user), class: "nav-link" do%><i class="fa fa-user-circle-o" aria-hidden="true"></i> マイページ<% end %>
