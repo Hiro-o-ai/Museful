@@ -1,9 +1,9 @@
 <% if article.bookmarked_by?(current_user) %>
   <%= link_to article_bookmarks_path(article), method: :delete, remote: true do %>
-    <i class="fa fa-heart" style="color: red;"></i>
+    <i class="fa fa-bookmark" style="color: blue;">お気に入り</i>
   <% end %>
 <% else %>
   <%= link_to article_bookmarks_path(article), method: :post, remote: true do %>
-    <i class="fa fa-heart-o"></i>
+    <i class="fa fa-bookmark-o">お気に入り</i>
   <% end %>
 <% end %>
