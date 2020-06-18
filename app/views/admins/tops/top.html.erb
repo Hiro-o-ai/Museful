@@ -1,1 +1,42 @@
 <%= render "layouts/admin_header" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>順位</th>
+      <th>名前</th>
+      <th>閲覧数</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+    <% @most_viewed.each.with_index(1) do |rank, i| %>
+      <tr>
+        <td><%= "#{i}" %></td>
+        <td><%= rank.title %></td>
+        <td><%= rank.impressions_count %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>
+        <%= @created_count.count %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>順位</th>
+      <th>名前</th>
+      <th>閲覧数</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+
+
+  </tbody>
+</table>

@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  impressionist :actions=>[:create, :show]
   def new
     @article = Article.new
     @genres = Genre.where(case: "記事")

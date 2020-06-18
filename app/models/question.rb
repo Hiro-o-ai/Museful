@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  is_impressionable counter_cache: true
+
   validates :title, :content, :genre_ids, presence: true
 
   enum status:{回答受付中: 1, 解決済み: 2}

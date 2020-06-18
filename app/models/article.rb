@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  is_impressionable counter_cache: true
+
   validates :title, :content, :genre_ids, presence: true
 
 
