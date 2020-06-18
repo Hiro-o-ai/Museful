@@ -11,13 +11,14 @@
 // about supported directives.
 //
 //= require rails-ujs
-// bootstrap4用
 //= require jquery
 //= require jquery_ujs
 //= require popper
 //= require bootstrap
 //= require summernote/summernote-bs4.min
+//= require summernote/lang/summernote-ja-JP
 //= require activestorage
+//= require chartkick
+//= require Chart.bundle
 //= require turbolinks
 //= require_tree
-//= require summernote/lang/summernote-ja-JP

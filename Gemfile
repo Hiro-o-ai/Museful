@@ -101,3 +101,11 @@ end
 # トラッキング
 gem 'impressionist', '~>1.6.1'
 
+# グラフ描写
+gem "chartkick"
+
+# 日付ごとにデータをグルーピングするメソッドを追加
+# mysql用
+gem 'groupdate'
+# sqlite用
+gem 'dateslices'

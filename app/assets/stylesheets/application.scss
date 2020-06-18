@@ -213,6 +213,25 @@
     }
   }
 
+  .user-graph{
+  margin-bottom: 50px;
+  padding:30px;
+  background-color: white;
+  border-left: solid 40px black;
+    .title{
+    padding:30px;
+    }
+  }
+
+  .graph{
+  padding:30px;
+  background-color: white;
+  border-left: solid 40px black;
+    .title{
+    padding:30px;
+    }
+  }
+
 
   .form-user {
   padding-bottom: 20px;
@@ -278,6 +297,10 @@
   margin : 30px 0;
   width:25%;
   text-align:center;
+  }
+
+  .info-item{
+  padding-bottom:50px;
   }
 
   .history-board {

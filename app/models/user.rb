@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  is_impressionable counter_cache: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

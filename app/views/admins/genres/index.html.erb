@@ -41,6 +41,7 @@
               <tr class="admin-tr">
                 <th>ジャンル名</th>
                 <th>状態</th>
+                <th>引用数</th>
                 <th></th>
               </tr>
             </thead>
@@ -58,6 +59,9 @@
                     <% end %>
                   </td>
                   <td>
+                    <%= genre.article_genres.count %>
+                  </td>
+                  <td>
                     <%= link_to edit_admins_genre_path(genre), class: "btn btn-success btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
                   </td>
                 </tr>
@@ -72,8 +76,9 @@
           <table class="table admin-table">
             <thead>
               <tr class="admin-tr">
-                <th>ジャンル</th>
+                <th>ジャンル名</th>
                 <th>状態</th>
+                <th>引用数</th>
                 <th></th>
               </tr>
             </thead>
@@ -89,6 +94,9 @@
                     <% else %>
                       無効
                     <% end %>
+                  </td>
+                  <td>
+                    <%= genre.question_genres.count %>
                   </td>
                   <td>
                     <%= link_to edit_admins_genre_path(genre), class: "btn btn-success btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>

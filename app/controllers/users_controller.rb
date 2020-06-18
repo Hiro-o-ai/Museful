@@ -7,6 +7,9 @@ class UsersController < ApplicationController
     @bookmarks = @user.bookmarks
     @articles = @user.articles
     @questions = @user.questions
+    @clear_quesions = @questions.where(status:"解決済み")
+    @answers = @user.answers
+    @best_answers = @answers.where(status:"ベストアンサー")
   end
 
   def edit

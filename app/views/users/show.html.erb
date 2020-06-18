@@ -69,6 +69,12 @@
                 </tbody>
               </table>
             </div>
+            <div class="col-md-6">
+              <%= pie_chart ({ "解決済み": @clear_quesions.count, "回答受付中": (@questions.count - @clear_quesions.count) }) %>
+            </div>
+            <div class="col-md-6">
+              <%= pie_chart ({ "ベストアンサー": @best_answers.count, "アンサー": (@answers.count - @best_answers.count) }) %>
+            </div>
           </div>
         </div>
         <!-- 閲覧履歴 -->

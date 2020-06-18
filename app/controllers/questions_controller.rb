@@ -1,9 +1,8 @@
 class QuestionsController < ApplicationController
-  impressionist :actions=>[:create, :show]
+  impressionist :actions=>[:show]
   def new
     @question = Question.new
     @genres = Genre.where(case: "質問")
-    impressionist(@question)
   end
 
   def create
@@ -24,7 +23,6 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
-    impressionist(@question)
   end
 
   def edit
