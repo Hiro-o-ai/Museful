@@ -1,11 +1,13 @@
-<% if likeable.liked_by?(current_user) %>
-  <%= link_to [likeable, Like.new], method: :delete, remote: true do %>
-    <i class="fa fa fa-thumbs-up" aria-hidden="true" style="color: #f39800;"></i>
-    <%= likeable.likes.count %> ナイス
-  <% end %>
-<% else %>
-  <%= link_to [likeable, Like.new], method: :post, remote: true do %>
-    <i class="fa fa fa-thumbs-o-up" aria-hidden="true"></i>
-    <%= likeable.likes.count %> ナイス
+<% if user_signed_in? && likeable.user_id != current_user.id%>
+  <% if likeable.liked_by?(current_user) %>
+    <%= link_to [likeable, Like.new], method: :delete, remote: true do %>
+      <i class="fa fa fa-thumbs-up" aria-hidden="true" style="color: #f39800;"></i>
+      <%= likeable.likes.count %> ナイス
+    <% end %>
+  <% else %>
+    <%= link_to [likeable, Like.new], method: :post, remote: true do %>
+      <i class="fa fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <%= likeable.likes.count %> ナイス
+    <% end %>
   <% end %>
 <% end %>

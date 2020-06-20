@@ -576,32 +576,20 @@
   }
 
 
-  #comment-table {
-  margin-top: 150px;
-  padding:30px;
-  background-color: #DDFFFF;
-  border-left: solid 40px #22FFFF;
-  box-shadow: 7px 7px;
-  }
-
   .comment-item {
   padding:30px;
   background-color: #DDFFFF;
   border-left: solid 40px #22FFFF;
   box-shadow: 7px 7px;
-  margin-bottom:30px;
+  margin-bottom:50px;
+  }
+
+  .comment-item:first-child{
+  margin-top: 150px;
   }
 
 
   .answer-form {
-  margin-top: 150px;
-  padding:30px;
-  background-color: #DDFFFF;
-  border-left: solid 40px #22FFFF;
-  box-shadow: 7px 7px;
-  }
-
-  #answer-table {
   margin-top: 150px;
   padding:30px;
   background-color: #DDFFFF;
@@ -615,6 +603,10 @@
   border-left: solid 40px #22FFFF;
   box-shadow: 7px 7px;
   margin-bottom:30px;
+  }
+
+  .answer-item:first-child{
+  margin-top: 150px;
   }
 
 

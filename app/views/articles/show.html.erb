@@ -25,37 +25,38 @@
               <%= @article.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
             </div>
           </div>
-          <% @article.article_genres.each do |genre_map| %>
-            <div class="article-item-tag">
-              <%= genre_map.genre.name %>
-            </div>
-          <% end %>
           <div class="col-md-11 article-content">
             <!-- html_safeメソッドでエスケープ処理を防ぐ -->
             <%= @article.content.html_safe %>
           </div>
-          <div class="row response-box">
-            <div class="col-md-2 favorite" id="favorite-<%= @article.id %>">
-              <%= render "favorites/favorite", article: @article %>
+          <% if user_signed_in? && @article.user_id != current_user.id %>
+            <div class="row response-box">
+              <div class="col-md-2 favorite" id="favorite-<%= @article.id %>">
+                <%= render "favorites/favorite", article: @article %>
+              </div>
+              <div class="col-md-2" id="bookmarks-<%= @article.id%>">
+                <%= render 'bookmarks/bookmark', article: @article %>
+              </div>
             </div>
-            <div class="col-md-2" id="bookmarks-<%= @article.id%>">
-              <%= render 'bookmarks/bookmark', article: @article %>
-            </div>
-          </div>
+          <% end %>
           <div class="row link-box">
-            <div class="offset-md-9 edit">
-              <%= link_to edit_article_path(@article), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
-            </div>
-            <div class="destroy">
-              <%= link_to article_path(@article), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
-            </div>
+            <% if user_signed_in? && @article.user_id == current_user.id%>
+              <div class="offset-md-9 edit">
+                <%= link_to edit_article_path(@article), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
+              </div>
+              <div class="destroy">
+                <%= link_to article_path(@article), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center" id="comment-form">
-      <%= render "comments/comment_form", article: @article, comment: @comment %>
-    </div>
+    <% if user_signed_in? && @article.user_id != current_user.id %>
+      <div class="row justify-content-center" id="comment-form">
+        <%= render "comments/comment_form", article: @article, comment: @comment %>
+      </div>
+    <% end %>
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div id="comment-table">

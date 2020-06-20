@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     @browsing_histories = @user.browsing_histories
     # ブックマーク一覧用
     @bookmarks = @user.bookmarks
-    @articles = @user.articles
-    @questions = @user.questions
+    @articles = @user.articles.order(created_at: :desc)
+    @questions = @user.questions.order(created_at: :desc)
     @clear_quesions = @questions.where(status:"解決済み")
     @answers = @user.answers
     @best_answers = @answers.where(status:"ベストアンサー")

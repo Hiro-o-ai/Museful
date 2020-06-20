@@ -139,36 +139,7 @@
               <h3>My Article</h3>
             </div>
           </div>
-          <div class="new-article">
-            <%= link_to new_article_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
-          </div>
-          <% @articles.each do |article| %>
-            <div class="article-item">
-              <div class="row article-item-head">
-                <h3><b><%= article.title %></b></h3>
-              </div>
-              <% article.article_genres.each do |genre_map| %>
-                <div class="article-item-tag">
-                  <%= genre_map.genre.name %>
-                </div>
-              <% end %>
-              <div class="col-md-9 article-item-content">
-                <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-                <%= article.content.html_safe %>
-              </div>
-              <div class="row link-box">
-                <div class="offset-md-6 show">
-                   <%= link_to article_path(article), class: "btn btn-primary btn-md" do%><i class="fa fa-search-plus" aria-hidden="true"></i> 詳細<% end %>
-                </div>
-                <div class="edit">
-                  <%= link_to edit_article_path(article), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
-                </div>
-                <div class="destroy">
-                  <%= link_to article_path(article), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          <%= render "articles/article_list", articles: @articles %>
         </div>
         <!-- 質問一覧 -->
         <div class="question-board tab-pane" role="tabpanel" id="question">
@@ -178,36 +149,7 @@
               <h3>My Question</h3>
             </div>
           </div>
-          <div class="new-quesiton">
-            <%= link_to new_question_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
-          </div>
-          <% @questions.each do |question| %>
-            <div class="question-item">
-              <div class="row question-item-head">
-                <h3><b><%= question.title %></b></h3>
-              </div>
-              <% question.question_genres.each do |genre_map| %>
-                <div class="question-item-tag">
-                  <%= genre_map.genre.name %>
-                </div>
-              <% end %>
-              <div class="col-md-9 question-item-content">
-                <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-                <%= question.content.html_safe %>
-              </div>
-              <div class="row link-box">
-                <div class="offset-md-6 show">
-                   <%= link_to question_path(question), class: "btn btn-primary btn-md" do%><i class="fa fa-search-plus" aria-hidden="true"></i> 詳細<% end %>
-                </div>
-                <div class="edit">
-                  <%= link_to edit_question_path(question), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
-                </div>
-                <div class="destroy">
-                  <%= link_to question_path(question), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          <%= render "questions/question_list", questions: @questions %>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@
         <div class="title">
           <h4>日別投稿数</h4>
         </div>
-        <%= line_chart [{ name: "記事", data: @questions.group_by_day(:created_at) },{ name: "質問", data: @articles.group_by_day(:created_at)}], discrete: true, ytitle: "投稿数" %>
+        <%= line_chart [{ name: "記事", data: @articles.group_by_day(:created_at) },{ name: "質問", data: @questions.group_by_day(:created_at)}], discrete: true, ytitle: "投稿数" %>
       </div>
     </div>
   </div>

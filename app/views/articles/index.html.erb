@@ -11,44 +11,7 @@
             <h2>Article</h2>
           </div>
         </div>
-        <div class="new-article">
-          <%= link_to new_article_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
-        </div>
-        <% @articles.each do |article| %>
-          <div class="article-item">
-            <div class="row article-item-head">
-              <h3><b><%= article.title %></b></h3>
-            </div>
-            <% article.article_genres.each do |genre_map| %>
-              <div class="article-item-tag">
-                <%= genre_map.genre.name %>
-              </div>
-            <% end %>
-            <div class="col-md-12 article-item-content">
-              <!-- html_safeメソッドでエスケープ処理を防ぐ -->
-              <%= article.content.html_safe %>
-            </div>
-            <div class="row response-box">
-              <div class="col-md-2 favorite" id="favorite-<%= article.id %>">
-                <%= render "favorites/favorite", article: article %>
-              </div>
-              <div class="col-md-2" id="bookmarks-<%= article.id%>">
-                <%= render 'bookmarks/bookmark', article: article %>
-              </div>
-            </div>
-            <div class="row link-box">
-              <div class="offset-md-8 show">
-                 <%= link_to article_path(article), class: "btn btn-primary btn-md" do%><i class="fa fa-search-plus" aria-hidden="true"></i> 詳細<% end %>
-              </div>
-              <div class="edit">
-                <%= link_to edit_article_path(article), class: "btn btn-primary btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
-              </div>
-              <div class="destroy">
-                <%= link_to article_path(article), method: :delete, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <%= render "articles/article_list", articles: @articles %>
       </div>
     </div>
   </div>
