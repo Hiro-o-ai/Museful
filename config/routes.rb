@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index, :update]
+  patch "/all_read" => "notifications#all_read"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

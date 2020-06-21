@@ -10,11 +10,13 @@
             <h2>通知</h2>
           </div>
         </div>
+        <div class="offset-md-10">
+          <%= link_to "全てを既読にする", all_read_path, method: :patch, class: "btn btn-primary btn-md"%>
+        </div>
         <% if current_user.notifications.present? %>
           <% current_user.notifications.order(created_at: :desc).each do |notification| %>
             <%= render "notifications/#{notification.action}", notification: notification %>
           <% end %>
-          <%= link_to "全てを既読にする", edit_admins_genre_path(genre), class: "btn btn-primary btn-md", remote: true%>
         <% else %>
           <div class="dropdown-item">
             お知らせはありません

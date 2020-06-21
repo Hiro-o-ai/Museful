@@ -7,6 +7,9 @@ class NotificationsController < ApplicationController
     redirect_to notification.redirect_path
   end
 
-  def read
+  def all_read
+    notifications = current_user.notifications.where(read: "unread")
+    notifications.update(read: "read")
+    redirect_to notifications_path
   end
 end
