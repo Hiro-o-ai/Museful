@@ -25,7 +25,7 @@
 
 
 $(function () {
-  $(".edit-answer-button").on("click", function () {
+  $(document).on("click", ".edit-answer-button", function () {
     var answerId = $(this).data("answer-id");
     var answerLabelArea = $("#answer-content-" + answerId);
     var answerTextArea = $("#edit-answer-" + answerId);
@@ -39,7 +39,7 @@ $(function () {
 
 
 $(function () {
-  $(".answer-cancel-button").on("click", function () {
+  $(document).on("click", ".answer-cancel-button", function () {
     var answerId = $(this).data("cancel-id");
     var answerLabelArea = $("#answer-content-" + answerId);
     var answerTextArea = $("#edit-answer-" + answerId);
@@ -52,7 +52,7 @@ $(function () {
 });
 
 $(function () {
-  $(".answer-update-button").on("click", function () {
+  $(document).on("click", ".answer-update-button", function () {
     var answerId = $(this).data("update-id");
     var answerTextArea = $("#edit-answer-"  + answerId);
     var body = answerTextArea.val();
@@ -79,56 +79,57 @@ $(function () {
 });
 
 
-$(function () {
-  $(".edit-answer-button").on("click", function () {
-    var answerId = $(this).data("answer-id");
-    var answerLabelArea = $("#answer-content-" + answerId);
-    var answerTextArea = $("#edit-answer-" + answerId);
-    var answerButton = $("#answer-button-" + answerId);
 
-    answerLabelArea.hide();
-    answerTextArea.show();
-    answerButton.show();
+$(function () {
+  $(document).on("click", ".edit-comment-button", function () {
+    var commentId = $(this).data("comment-id");
+    var commentLabelArea = $("#comment-content-" + commentId);
+    var commentTextArea = $("#edit-comment-" + commentId);
+    var commentButton = $("#comment-button-" + commentId);
+
+    commentLabelArea.hide();
+    commentTextArea.show();
+    commentButton.show();
   });
 });
 
 
 $(function () {
-  $(".answer-cancel-button").on("click", function () {
-    var answerId = $(this).data("cancel-id");
-    var answerLabelArea = $("#answer-content-" + answerId);
-    var answerTextArea = $("#edit-answer-" + answerId);
-    var answerButton = $("#answer-button-" + answerId);
+  $(document).on("click", ".comment-cancel-button",function () {
+    var commentId = $(this).data("cancel-id");
+    var commentLabelArea = $("#comment-content-" + commentId);
+    var commentTextArea = $("#edit-comment-" + commentId);
+    var commentButton = $("#comment-button-" + commentId);
 
-    answerLabelArea.show();
-    answerTextArea.hide();
-    answerButton.hide();
+    commentLabelArea.show();
+    commentTextArea.hide();
+    commentButton.hide();
   });
 });
 
 $(function () {
-  $(".answer-update-button").on("click", function () {
-    var answerId = $(this).data("update-id");
-    var answerTextArea = $("#edit-answer-"  + answerId);
-    var body = answerTextArea.val();
+  $(document).on("click", ".comment-update-button", function () {
+    var commentId = $(this).data("update-id");
+    var commentTextArea = $("#edit-comment-"  + commentId);
+    var body = commentTextArea.val();
 
     $.ajax({
-      url: "/answers/" + answerId,
+      url: "/comments/" + commentId,
       type: "PATCH",
       data: {
-        answer: {
+        comment: {
           content: body
         }
       }
     })
     .done(function () {
-      var answerLabelArea = $("#answer-content-" + answerId);
-      var answerButton = $("#answer-button-" + answerId);
+      var commentLabelArea = $("#comment-content-" + commentId);
+      var commentButton = $("#comment-button-" + commentId);
 
-      answerLabelArea.show();
-      answerLabelArea.text(body);
-      answerTextArea.hide();
-      answerButton.hide();
+      commentLabelArea.show();
+      commentLabelArea.text(body);
+      commentTextArea.hide();
+      commentButton.hide();
     })
   });
 });

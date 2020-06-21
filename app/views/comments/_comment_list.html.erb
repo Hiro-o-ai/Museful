@@ -17,8 +17,13 @@
       <div class="col-md-3" id="star-rate-<%= comment.id %>"></div>
     </div>
     <div class="row">
-      <div class="col-md-11 comment-content">
+      <div class="col-md-11 comment-content" id="comment-content-<%= comment.id %>">
         <%= comment.content %>
+      </div>
+      <textarea style="display: none;" id="edit-comment-<%= comment.id %>" class="form-control"><%= comment.content %></textarea>
+      <div id="comment-button-<%= comment.id %>" style="display: none;">
+        <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-light comment-cancel-button">キャンセル</button>
+        <button data-update-id=<%= comment.id%> class="btn btn-success comment-update-button">更新</button>
       </div>
     </div>
     <div class="row response-box">
@@ -27,11 +32,14 @@
       </div>
     </div>
     <div class="row link-box">
-      <div class="offset-md-10">
-        <% if comment.user == current_user %>
+      <% if user_signed_in? && comment.user == current_user %>
+        <div class="offset-md-8 edit">
+          <button data-comment-id=<%= comment.id %> class="btn btn-primary btn-md edit-comment-button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集</button>
+        </div>
+        <div class="destroy">
           <%= link_to comment_path(comment), method: :delete, remote: true, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
   <script>
