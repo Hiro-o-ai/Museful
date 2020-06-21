@@ -96,7 +96,7 @@
                     <%= genre_map.genre.name %>
                   </div>
                 <% end %>
-                <div class="col-md-9 history-item-content">
+                <div class="col-md-9 history-item-content overflow-auto">
                   <!-- html_safeメソッドでエスケープ処理を防ぐ -->
                   <%= history.article.content.html_safe %>
                 </div>
@@ -123,10 +123,20 @@
                     <%= genre_map.genre.name %>
                   </div>
                 <% end %>
-                <div class="col-md-9 bookmark-item-content">
+                <div class="col-md-9 bookmark-item-content overflow-auto">
                   <!-- html_safeメソッドでエスケープ処理を防ぐ -->
                   <%= bookmark.article.content.html_safe %>
                 </div>
+                <% if user_signed_in? && bookmark.article.user_id != current_user.id %>
+                  <div class="row response-box">
+                    <div class="col-md-3 favorite" id="favorite-<%= bookmark.article.id %>">
+                      <%= render "favorites/favorite", article: bookmark.article %>
+                    </div>
+                    <div class="col-md-2" id="bookmarks-<%= bookmark.article.id%>">
+                      <%= render 'bookmarks/bookmark', article: bookmark.article %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             <% end %>
           <% end %>

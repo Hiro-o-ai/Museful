@@ -1,19 +1,42 @@
-  <% question.answers.each do |answer| %>
-    <div class="answer-item" id="answer-<%= answer.id %>">
-      <div class="row">
+<% question.answers.order(created_at: :desc).each do |answer| %>
+  <div class="answer-item" id="answer-<%= answer.id %>">
+    <% unless answer.status == "アンサー" %>
+      <div class="answer-head">
+        <div class="pin"></div>
+        <div class="answer-title">
+          <h2>BestAnswer</h2>
+        </div>
+      </div>
+    <% end %>
+    <% if user_signed_in? && answer.question.status == "回答受付中" && answer.question.user_id == current_user.id %>
+      <div class="offset-md-9">
+        <%= form_with(url: answer_path(answer_id: answer.id), model: answer, local:true) do |f| %>
+          <%= f.hidden_field :status, :value => "ベストアンサー" %>
+          <%= f.submit "ベストアンサーにする",class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="row">
       <div class="col-md-1">
         <%= attachment_image_tag answer.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
       </div>
       <div class="col-md-4 user-name">
-        <%= answer.user.nickname %>さん
+        <%= link_to user_path(answer.user) do%>
+          <%= answer.user.nickname %>さん
+        <% end %>
       </div>
       <div class="offset-md-4 col-md-3">
         <%= answer.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-11 answer-content">
+      <div class="col-md-11 answer-content" id="answer-content-<%= answer.id %>">
         <%= answer.content %>
+      </div>
+      <textarea style="display: none;" id="edit-answer-<%= answer.id %>" class="form-control"><%= answer.content %></textarea>
+      <div id="answer-button-<%= answer.id %>" style="display: none;">
+        <button data-cancel-id=<%= answer.id %> type="button" class="btn btn-light answer-cancel-button">キャンセル</button>
+        <button data-update-id=<%= answer.id%> class="btn btn-success answer-update-button">更新</button>
       </div>
     </div>
     <div class="row response-box">
@@ -22,12 +45,14 @@
       </div>
     </div>
     <div class="row link-box">
-      <div class="offset-md-10">
-        <% if answer.user == current_user %>
+      <% if user_signed_in? && answer.user == current_user && answer.question.status == "回答受付中" %>
+        <div class="offset-md-8 edit">
+          <button data-answer-id=<%= answer.id %> class="btn btn-primary btn-md edit-answer-button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集</button>
+        </div>
+        <div class="destroy">
           <%= link_to answer_path(answer), method: :delete, remote: true, "data-confirm" => "本当に削除してもよろしいですか?", class: "btn btn-primary btn-md" do%><i class="fa fa-trash-o" aria-hidden="true"></i> 削除<% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
-

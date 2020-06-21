@@ -7,7 +7,11 @@
         <div class="question-head">
           <div class="pin"></div>
           <div class="question-title">
-            <h2>Question</h2>
+            <% if @question.status == "回答受付中" %>
+              <h2>Question (回答受付中)</h2>
+            <% else %>
+              <h2>Question (解決済み)</h2>
+            <% end %>
           </div>
         </div>
         <div class="question-box">
@@ -19,7 +23,9 @@
               <%= attachment_image_tag @question.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
             </div>
             <div class="col-md-4 user-name">
-              <%= @question.user.nickname %>さん
+              <%= link_to user_path(@question.user) do%>
+                <%= @question.user.nickname %>さん
+              <% end %>
             </div>
             <div class="offset-md-4 col-md-3">
               <%= @question.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
@@ -49,15 +55,25 @@
         </div>
       </div>
     </div>
-    <% if user_signed_in? && @question.user_id != current_user.id %>
-      <div class="row justify-content-center" id="answer-form">
-        <%= render "answers/answer_form", question: @question, answer: @answer %>
-      </div>
-    <% end %>
     <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div id="answer-table">
-          <%= render "answers/answer_list", question: @question %>
+      <div class="col-md-8 answer-board">
+        <div class="answer-head">
+          <div class="pin"></div>
+          <div class="answer-title">
+            <h2>Answer</h2>
+          </div>
+        </div>
+        <% if user_signed_in? && @question.user_id != current_user.id && @question.status == "回答受付中"%>
+          <div class="row justify-content-center" id="answer-form">
+            <%= render "answers/answer_form", question: @question, answer: @answer %>
+          </div>
+        <% end %>
+        <div class="row justify-content-center">
+          <div class="col-md-11">
+            <div id="answer-table">
+              <%= render "answers/answer_list", question: @question %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

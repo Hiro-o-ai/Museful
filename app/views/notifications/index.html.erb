@@ -14,6 +14,7 @@
           <% current_user.notifications.order(created_at: :desc).each do |notification| %>
             <%= render "notifications/#{notification.action}", notification: notification %>
           <% end %>
+          <%= link_to "全てを既読にする", edit_admins_genre_path(genre), class: "btn btn-primary btn-md", remote: true%>
         <% else %>
           <div class="dropdown-item">
             お知らせはありません

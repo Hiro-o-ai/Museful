@@ -22,3 +22,115 @@
 //= require Chart.bundle
 //= require turbolinks
 //= require_tree
+
+
+$(function () {
+  $(".edit-answer-button").on("click", function () {
+    var answerId = $(this).data("answer-id");
+    var answerLabelArea = $("#answer-content-" + answerId);
+    var answerTextArea = $("#edit-answer-" + answerId);
+    var answerButton = $("#answer-button-" + answerId);
+
+    answerLabelArea.hide();
+    answerTextArea.show();
+    answerButton.show();
+  });
+});
+
+
+$(function () {
+  $(".answer-cancel-button").on("click", function () {
+    var answerId = $(this).data("cancel-id");
+    var answerLabelArea = $("#answer-content-" + answerId);
+    var answerTextArea = $("#edit-answer-" + answerId);
+    var answerButton = $("#answer-button-" + answerId);
+
+    answerLabelArea.show();
+    answerTextArea.hide();
+    answerButton.hide();
+  });
+});
+
+$(function () {
+  $(".answer-update-button").on("click", function () {
+    var answerId = $(this).data("update-id");
+    var answerTextArea = $("#edit-answer-"  + answerId);
+    var body = answerTextArea.val();
+
+    $.ajax({
+      url: "/answers/" + answerId,
+      type: "PATCH",
+      data: {
+        answer: {
+          content: body
+        }
+      }
+    })
+    .done(function () {
+      var answerLabelArea = $("#answer-content-" + answerId);
+      var answerButton = $("#answer-button-" + answerId);
+
+      answerLabelArea.show();
+      answerLabelArea.text(body);
+      answerTextArea.hide();
+      answerButton.hide();
+    })
+  });
+});
+
+
+$(function () {
+  $(".edit-answer-button").on("click", function () {
+    var answerId = $(this).data("answer-id");
+    var answerLabelArea = $("#answer-content-" + answerId);
+    var answerTextArea = $("#edit-answer-" + answerId);
+    var answerButton = $("#answer-button-" + answerId);
+
+    answerLabelArea.hide();
+    answerTextArea.show();
+    answerButton.show();
+  });
+});
+
+
+$(function () {
+  $(".answer-cancel-button").on("click", function () {
+    var answerId = $(this).data("cancel-id");
+    var answerLabelArea = $("#answer-content-" + answerId);
+    var answerTextArea = $("#edit-answer-" + answerId);
+    var answerButton = $("#answer-button-" + answerId);
+
+    answerLabelArea.show();
+    answerTextArea.hide();
+    answerButton.hide();
+  });
+});
+
+$(function () {
+  $(".answer-update-button").on("click", function () {
+    var answerId = $(this).data("update-id");
+    var answerTextArea = $("#edit-answer-"  + answerId);
+    var body = answerTextArea.val();
+
+    $.ajax({
+      url: "/answers/" + answerId,
+      type: "PATCH",
+      data: {
+        answer: {
+          content: body
+        }
+      }
+    })
+    .done(function () {
+      var answerLabelArea = $("#answer-content-" + answerId);
+      var answerButton = $("#answer-button-" + answerId);
+
+      answerLabelArea.show();
+      answerLabelArea.text(body);
+      answerTextArea.hide();
+      answerButton.hide();
+    })
+  });
+});
+
+

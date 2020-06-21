@@ -1,7 +1,6 @@
 
-<% if @article.commented_by?(current_user) %>
-<% else %>
-  <div class="col-md-8 comment-form">
+<% unless @article.commented_by?(current_user) %>
+  <div class="col-md-11 comment-form">
     <%= form_with url:article_comments_path(article_id: article.id), model:[article, comment] do |f| %>
 
       <div class="form-group" id="star">

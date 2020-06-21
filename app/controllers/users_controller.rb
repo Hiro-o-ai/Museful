@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only:[:edit]
+  before_action :correct_user, only: [:edit]
   def show
     @user = User.find(params[:id])
     # 閲覧履歴一覧用
@@ -13,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
@@ -30,8 +31,8 @@ class UsersController < ApplicationController
   end
 
   def leave_update
-    @user = User.find(params[:user_id])
-    @user.update(user_params)
+    user = User.find(params[:user_id])
+    user.update(user_params)
     reset_session
     redirect_to root_path
   end
@@ -39,5 +40,12 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:nickname, :image, :status, :introduction)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    if  @user.id != current_user.id
+      redirect_to user_path(@user)
+    end
   end
 end

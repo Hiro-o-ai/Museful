@@ -350,6 +350,7 @@
 
   .history-item-content {
   padding-left: 30px;
+  height : 100px;
   }
 
   .bookmark-board {
@@ -400,6 +401,7 @@
 
   .bookmark-item-content {
   padding-left: 30px;
+  height : 100px;
   }
 
   .article-board {
@@ -447,6 +449,7 @@
 
   .article-item-content {
   padding-left: 30px;
+  height:100px;
   }
 
   .question-board {
@@ -459,7 +462,7 @@
 
   .question-title{
   padding: 35px 0 20px 60px;
-  font-family: cursive, fantasy;
+  font-family: cursive, fantasy, arial unicode ms;
   }
 
   .question-item {
@@ -494,6 +497,7 @@
 
   .question-item-content {
   padding-left: 30px;
+  height:100px;
   }
 
   .response-box {
@@ -501,7 +505,7 @@
   }
 
   .favorite {
-  padding-left:45px;
+  margin-left:25px;
   }
 
   .link-box {
@@ -567,8 +571,20 @@
   box-shadow: 7px 7px;
   }
 
+  .comment-board {
+  background-color: #ffe4b5;
+  border-left: solid 40px #ffa500;
+  box-shadow: 7px 7px;
+  margin-top: 100px;
+  padding: 0 0 20px 20px
+  }
+
+  .comment-title{
+  padding: 35px 0 20px 60px;
+  font-family: cursive, fantasy;
+  }
+
   .comment-form {
-  margin-top: 150px;
   padding:30px;
   background-color: #DDFFFF;
   border-left: solid 40px #22FFFF;
@@ -577,6 +593,7 @@
 
 
   .comment-item {
+  margin-top: 30px;
   padding:30px;
   background-color: #DDFFFF;
   border-left: solid 40px #22FFFF;
@@ -584,13 +601,20 @@
   margin-bottom:50px;
   }
 
-  .comment-item:first-child{
-  margin-top: 150px;
+  .answer-board {
+  background-color: #ffe4b5;
+  border-left: solid 40px #ffa500;
+  box-shadow: 7px 7px;
+  margin-top: 100px;
+  padding: 0 0 20px 20px
   }
 
+  .answer-title{
+  padding: 35px 0 20px 60px;
+  font-family: cursive, fantasy;
+  }
 
   .answer-form {
-  margin-top: 150px;
   padding:30px;
   background-color: #DDFFFF;
   border-left: solid 40px #22FFFF;
@@ -598,15 +622,23 @@
   }
 
   .answer-item {
+  margin-top: 30px;
   padding:30px;
   background-color: #DDFFFF;
   border-left: solid 40px #22FFFF;
   box-shadow: 7px 7px;
   margin-bottom:30px;
+    .edit{
+    padding-left:60px;
+    }
   }
 
-  .answer-item:first-child{
-  margin-top: 150px;
+  .answer-pin {
+  display:inline-block;
+  background-image: image-url("redpin.png");
+  background-size: contain;
+  height:50px;
+  width:44px;
   }
 
 

@@ -6,4 +6,7 @@ class NotificationsController < ApplicationController
     # redirect_pathはnotification.rbで定義
     redirect_to notification.redirect_path
   end
+
+  def read
+  end
 end

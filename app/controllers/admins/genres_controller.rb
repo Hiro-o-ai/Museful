@@ -1,4 +1,5 @@
 class Admins::GenresController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @genre = Genre.new
     @article_genres = Genre.where(case:"記事")

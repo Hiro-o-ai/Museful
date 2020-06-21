@@ -1,11 +1,13 @@
-<% article.comments.each do |comment| %>
+<% article.comments.order(created_at: :desc).each do |comment| %>
   <div class="comment-item" id="comment-<%= comment.id %>">
     <div class="row">
       <div class="col-md-1">
         <%= attachment_image_tag comment.user, :image, format:"jpeg", class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "60x60" %>
       </div>
       <div class="col-md-4 user-name">
-        <%= comment.user.nickname %>さん
+        <%= link_to user_path(comment.user) do%>
+          <%= comment.user.nickname %>さん
+        <% end %>
       </div>
       <div class="offset-md-4 col-md-3">
         <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
