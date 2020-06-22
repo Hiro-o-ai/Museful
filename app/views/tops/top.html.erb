@@ -1,1 +1,99 @@
 <%= render "layouts/user_header" %>
+
+<div class="top">
+  <div class="container-fluid">
+    <div class="image-board"></div>
+    <div class="row justify-content-center">
+      <div class="col-md-10 article-ranking">
+        <div class="pin"></div>
+        <div class="article-ranking-title">
+          <h2>ArticleRanking</h2>
+        </div>
+        <div class="col-md-10 favorite-box">
+          <h5><i class="fa fa-star" aria-hidden="true"></i> いいね数ランキングベスト5</h5>
+          <table class="table table-hover ">
+            <tbody>
+              <% @favorite_articles.each.with_index(1) do |article, i| %>
+                <tr>
+                  <td><%= "#{i}" %>位</td>
+                  <td><%= link_to article_path(article) do%><%= article.title %><% end %></td>
+                  <td><%= article.favorites.count %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-10 bookmark-box">
+          <h5><i class="fa fa-star" aria-hidden="true"></i> ブックマーク数ランキングベスト5</h5>
+          <table class="table table-hover">
+            <tbody>
+              <% @bookmark_articles.each.with_index(1) do |article, i| %>
+                <tr>
+                  <td><%= "#{i}" %>位</td>
+                  <td><%= link_to article_path(article) do%><%= article.title %><% end %></td>
+                  <td><%= article.bookmarks.count %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-10 average-box">
+          <h5><i class="fa fa-star" aria-hidden="true"></i> 評価値ランキングベスト5</h5>
+          <table class="table table-hover">
+            <tbody>
+              <% @avarage_rate_articles.each.with_index(1) do |article, i| %>
+                <tr>
+                  <td><%= "#{i}" %>位</td>
+                  <td><%= link_to article_path(article) do%><%= article.title %><% end %></td>
+                  <td><%= article.avarage_rate %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-10 question-ranking">
+        <div class="pin"></div>
+        <div class="question-ranking-title">
+          <h2>QuestionRanking</h2>
+        </div>
+        <div class="questioin-ranking-box col-md-10">
+          <h5><i class="fa fa-star" aria-hidden="true"></i> 共感数ランキングベスト5</h5>
+          <table class="table table-hover">
+            <tbody>
+              <% @respond_questions.each.with_index(1) do |question, i| %>
+                <tr>
+                  <td><%= "#{i}" %>位</td>
+                  <td><%= link_to question_path(question) do%><%= question.title %><% end %></td>
+                  <td><%= question.responses.count %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-10 new-question-ranking">
+        <div class="pin"></div>
+        <div class="new-question-title">
+          <h2>NewFaceQuestion</h2>
+        </div>
+        <div class="new-question-box col-md-10">
+          <h5><i class="fa fa-star" aria-hidden="true"></i> 新しい質問</h5>
+          <table class="table table-hover">
+            <tbody>
+              <% @new_questions.each do |question| %>
+                <tr>
+                  <td><%= link_to question_path(question) do%><%= question.title %><% end %></td>
+                  <td><%= question.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

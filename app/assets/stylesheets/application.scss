@@ -213,6 +213,130 @@
     }
   }
 
+  div .container-fluid {
+  background-image: image-url("coluc.jpg");
+  background-size: auto;
+  }
+
+  .article-ranking {
+  padding: 20px 0;
+  background-color: #DDFFFF;
+  border-left: solid 40px #22FFFF;
+  margin: 50px 0;
+  box-shadow: 7px 7px;
+    table{
+    width:800px;
+    text-align:center;
+    background-color:white;
+    }
+    .fa-star{
+    color:gold;
+    }
+    h5 {
+    text-decoration:underline;
+    text-decoration-color:#FF0000;
+    margin-bottom:20px;
+    font-family:arial unicode ms, Impact, sans-serif;
+    }
+  }
+
+  .article-ranking-title {
+  font-family: cursive, fantasy;
+  }
+
+  .question-ranking-title {
+  font-family: cursive, fantasy;
+  }
+
+  .new-question-title {
+  font-family: cursive, fantasy;
+  }
+
+  .favorite-box {
+  margin:40px;
+  background-color: #AAFFFF;
+  border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
+  padding:20px;
+  }
+
+  .bookmark-box {
+  margin:40px;
+  background-color: #DDFFFF;
+  border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
+  padding:20px;
+  }
+
+  .average-box {
+  margin:40px;
+  background-color: #DDFFFF;
+  border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
+  padding:20px;
+  }
+
+  .question-ranking {
+  padding: 20px 0;
+  background-color: #DDFFFF;
+  border-left: solid 40px #22FFFF;
+  margin: 50px 0;
+  box-shadow: 7px 7px;
+    table{
+    width:800px;
+    text-align:center;
+    background-color:white;
+    }
+    .fa-star{
+    color:gold;
+    }
+    h5 {
+    text-decoration:underline;
+    text-decoration-color:#FF0000;
+    margin-bottom:20px;
+    }
+  }
+
+  .questioin-ranking-box {
+  margin:40px;
+  background-color: #AAFFFF;
+  border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
+  padding:20px;
+  }
+
+
+  .new-question-ranking {
+  padding: 20px 0;
+  background-color: #DDFFFF;
+  border-left: solid 40px #22FFFF;
+  margin: 50px 0;
+  box-shadow: 7px 7px;
+    table{
+    width:800px;
+    text-align:center;
+    background-color:white;
+    }
+    .fa-star{
+    color:gold;
+    }
+    h5 {
+    text-decoration:underline;
+    text-decoration-color:#FF0000;
+    margin-bottom:20px;
+    }
+  }
+
+  .new-question-box {
+  margin:40px;
+  background-color: #AAFFFF;
+  border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
+  padding:20px;
+  }
+
+
+
   .user-graph{
   margin-bottom: 50px;
   padding:30px;

@@ -3,10 +3,8 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = current_user.comments.new(comment_params)
     @comment.article_id = @article.id
-    if @comment.save
-    else
-      render '/articles/show'
-    end
+    @comment.save
+    @article.update(avarage_rate: @article.comments.average(:rate))
   end
 
   def destroy
