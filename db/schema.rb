@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "impressions_count", default: 0
-    t.float "avarage_rate"
+    t.float "avarage_rate", default: 0.0, null: false
   end
 
   create_table "bookmarks", force: :cascade do |t|

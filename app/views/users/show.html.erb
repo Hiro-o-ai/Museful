@@ -11,7 +11,7 @@
       <a href="#history" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">閲覧履歴</a>
     </li>
     <li>
-      <a href="#bookmark" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">お気に入り</a>
+      <a href="#bookmark" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">ブックマーク</a>
     </li>
     <li>
       <a href="#article" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">My Article</a>
@@ -109,7 +109,7 @@
           <div class="bookmark-head">
             <div class="pin"></div>
             <div class="bookmark-title">
-              <h4>お気に入り</h4>
+              <h4>ブックマーク</h4>
             </div>
           </div>
           <% @bookmarks.each do |bookmark| %>
@@ -128,11 +128,11 @@
                   <%= bookmark.article.content.html_safe %>
                 </div>
                 <% if user_signed_in? && bookmark.article.user_id != current_user.id %>
-                  <div class="row response-box">
-                    <div class="col-md-3 favorite" id="favorite-<%= bookmark.article.id %>">
+                  <div class="row response-box flex">
+                    <div class="response-item favorite" id="favorite-<%= bookmark.article.id %>">
                       <%= render "favorites/favorite", article: bookmark.article %>
                     </div>
-                    <div class="col-md-2" id="bookmarks-<%= bookmark.article.id%>">
+                    <div class="response-item" id="bookmarks-<%= bookmark.article.id%>">
                       <%= render 'bookmarks/bookmark', article: bookmark.article %>
                     </div>
                   </div>

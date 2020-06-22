@@ -48,5 +48,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :update]
   patch "/all_read" => "notifications#all_read"
 
+  resources :genres, only: [:show]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,27 @@
+<%= render "layouts/user_header" %>
+
+<section>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-10 genre-board">
+        <% if @genre.case == "記事" %>
+          <div class="article-head">
+            <div class="pin"></div>
+            <div class="article-title">
+              <h2>Article</h2>
+            </div>
+          </div>
+          <%= render "articles/article_list", articles: @articles %>
+        <% else %>
+          <div class="question-head">
+            <div class="pin"></div>
+            <div class="question-title">
+              <h2>Question</h2>
+            </div>
+          </div>
+          <%= render "questions/question_list", questions: @questions %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

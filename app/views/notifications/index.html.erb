@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="offset-md-10">
-          <%= link_to "全てを既読にする", all_read_path, method: :patch, class: "btn btn-primary btn-md"%>
+          <%= link_to "全てを既読にする", all_read_path, method: :patch, class: "btn btn-primary btn-md shadow"%>
         </div>
         <% if current_user.notifications.present? %>
           <% current_user.notifications.order(created_at: :desc).each do |notification| %>

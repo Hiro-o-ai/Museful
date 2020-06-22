@@ -1,5 +1,8 @@
 class TopsController < ApplicationController
   def top
+    @article_genres = Genre.where(case:"記事", status: "有効")
+    @question_genres = Genre.where(case:"質問", status: "有効")
+
     @favorite_articles = Article.find(Favorite.group(:article_id).order('count(article_id) desc').limit(5).pluck(:article_id))
     @bookmark_articles = Article.find(Bookmark.group(:article_id).order('count(article_id) desc').limit(5).pluck(:article_id))
     @avarage_rate_articles = Article.all.order(avarage_rate: :desc).limit(5)

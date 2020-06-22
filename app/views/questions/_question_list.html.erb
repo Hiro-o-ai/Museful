@@ -17,13 +17,20 @@
       <!-- html_safeメソッドでエスケープ処理を防ぐ -->
       <%= question.content.html_safe %>
     </div>
-    <% if user_signed_in? && question.user_id != current_user.id %>
-      <div class="row response-box">
-        <div class="col-md-3 response" id="response-<%= question.id %>">
+    <div class="row response-box flex">
+      <% if user_signed_in? && question.user_id != current_user.id %>
+        <div class="response-item response" id="response-<%= question.id %>">
           <%= render "responses/response", question: question %>
         </div>
+      <% else %>
+        <div class="response-item">
+          <i class="fa fa-handshake-o" aria-hidden="true" style="color: #eb6101;"></i><%= question.responses.count %> 共感した
+        </div>
+      <% end %>
+      <div class="response-item">
+        閲覧数<%= question.impressionist_count(:filter=>:session_hash) %>
       </div>
-    <% end %>
+    </div>
     <div class="row link-box">
       <% if user_signed_in? && question.user_id == current_user.id%>
         <div class="offset-md-7 show">

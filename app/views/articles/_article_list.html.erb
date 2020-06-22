@@ -17,16 +17,30 @@
       <!-- html_safeメソッドでエスケープ処理を防ぐ -->
       <%= article.content.html_safe %>
     </div>
-    <% if user_signed_in? && article.user_id != current_user.id %>
-      <div class="row response-box">
-        <div class="col-md-2 favorite" id="favorite-<%= article.id %>">
+    <div class="row response-box flex">
+      <% if user_signed_in? && article.user_id != current_user.id %>
+        <div class="response-item favorite" id="favorite-<%= article.id %>">
           <%= render "favorites/favorite", article: article %>
         </div>
-        <div class="col-md-2" id="bookmarks-<%= article.id%>">
+        <div class="response-item" id="bookmarks-<%= article.id%>">
           <%= render 'bookmarks/bookmark', article: article %>
         </div>
+      <% else %>
+        <div class="response-item">
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i><%= article.favorites.count %> いいね
+        </div>
+        <div class="response-item">
+          <i class="fa fa-bookmark" style="color: blue;"></i><%= article.bookmarks.count %>ブックマーク
+        </div>
+      <% end %>
+      <div class="response-item">
+        閲覧数<%= article.impressionist_count(:filter=>:session_hash) %>
       </div>
-    <% end %>
+      <div class="response-item flex">
+        <div id="star-rate-<%= article.id %>"></div>
+        <div>(<%= article.comments.count %>)件</div>
+      </div>
+    </div>
     <div class="row link-box">
       <% if user_signed_in? && article.user_id == current_user.id%>
         <div class="offset-md-7 show">
@@ -45,4 +59,17 @@
       <% end %>
     </div>
   </div>
+  <script>
+    $(document).ready(function(){
+      $('#star-rate-<%= article.id %>').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= article.avarage_rate %>,
+      });
+    });
+  </script>
 <% end %>

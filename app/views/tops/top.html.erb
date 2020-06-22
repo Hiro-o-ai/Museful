@@ -1,9 +1,29 @@
 <%= render "layouts/user_header" %>
 
+<div class="jumbotron jumbotron-fluid">
+  <h2 class="lead">あなたの新生活を照らす　　　<span>Museful</span></h2>
+</div>
 <div class="top">
   <div class="container-fluid">
-    <div class="image-board"></div>
     <div class="row justify-content-center">
+      <div class="col-md-10 genre-box">
+        <div class="pin"></div>
+        <div class="genre-title">
+          <h2>Genres</h2>
+        </div>
+        <div class="article-tags">
+          <h4><i class="fa fa-tags" aria-hidden="true"></i> article</h4>
+          <% @article_genres.each do |genre| %>
+            <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
+          <% end %>
+        </div>
+        <div class="question-tags">
+          <h4><i class="fa fa-tags" aria-hidden="true"></i> question</h4>
+          <% @question_genres.each do |genre| %>
+            <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
+          <% end %>
+        </div>
+      </div>
       <div class="col-md-10 article-ranking">
         <div class="pin"></div>
         <div class="article-ranking-title">
