@@ -20,6 +20,9 @@
 
   footer {
   background-color: #696969;
+    p{
+    margin:0;
+    }
   }
 
   section .container-fluid {
@@ -64,8 +67,6 @@
   white-space: nowrap;
   height:50px;
   }
-
-
 
   .admin-login-form {
   padding-bottom: 20px;
@@ -221,6 +222,19 @@
     }
   }
 
+  .admin-search{
+  margin-bottom:270px;
+    #search{
+    width:300px;
+    }
+  }
+
+  .admin-search-result{
+    #search{
+    width:300px;
+    }
+  }
+
   div .container-fluid {
   background-image: image-url("coluc.jpg");
   background-size: auto;
@@ -248,6 +262,7 @@
   padding: 20px 0;
   background-color: #DDFFFF;
   border-left: solid 40px #22FFFF;
+  box-shadow: 7px 7px;
   margin: 50px 0;
     .genre-title{
     font-family: cursive, fantasy;
@@ -862,6 +877,19 @@
   box-shadow: 7px 7px;
   margin-top: 100px;
   padding: 0 0 20px 20px
+  }
+
+  .search{
+  margin-bottom:160px;
+    #search{
+    width:300px;
+    }
+  }
+
+  .search-result{
+    #search{
+    width:300px;
+    }
   }
 
 

@@ -25,4 +25,11 @@ class Question < ApplicationRecord
   def answered_by?(user)
     answers.where(user_id: user.id).exists?
   end
+
+  # 質問を曖昧検索
+  def Question.search(search, user_or_article_or_question)
+    if user_or_article_or_question == "3"
+      Question.where(['title LIKE ?', "%#{search}%"]).or(Question.where(['content LIKE ?', "%#{search}%"]))
+    end
+  end
 end

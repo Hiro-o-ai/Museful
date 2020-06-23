@@ -7,11 +7,18 @@
   <div class="question-item">
     <div class="row question-item-head">
       <h3><b><%= question.title %></b></h3>
+      <% if question.status == "回答受付中" %>
+        <h3>(回答受付中)</h3>
+      <% else %>
+        <h3>(解決済み)</h3>
+      <% end %>
     </div>
     <% question.question_genres.each do |genre_map| %>
-      <div class="question-item-tag">
-        <%= genre_map.genre.name %>
-      </div>
+      <%= link_to genre_path(genre_map.genre) do%>
+        <div class="question-item-tag">
+          <%= genre_map.genre.name %>
+        </div>
+      <% end %>
     <% end %>
     <div class="col-md-9 question-item-content overflow-auto">
       <!-- html_safeメソッドでエスケープ処理を防ぐ -->

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get "/" => "tops#top"
+    get "/search" =>"seaches#top"
+    get "/search/result" =>"seaches#search"
     resources :users, only: [:index, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :articles, only: [:index, :show, :destroy]
@@ -49,6 +51,9 @@ Rails.application.routes.draw do
   patch "/all_read" => "notifications#all_read"
 
   resources :genres, only: [:show]
+
+  get "/search" =>"seaches#top"
+  get "/search/result" =>"seaches#search"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

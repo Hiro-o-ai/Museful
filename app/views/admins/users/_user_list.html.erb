@@ -1,0 +1,37 @@
+<div class="col-md-11 admin-user">
+  <div class="pin"></div>
+  <div class="admin-user-title">
+    <h3>会員一覧</h3>
+  </div>
+
+  <table class="table admin-user-table table-hover">
+    <thead>
+      <tr class="admin-tr">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.nickname %></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.status == "有効" %>
+              <p>有効</p>
+            <% else %>
+              <p>退会済み</p>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_admins_user_path(user), class: "btn btn-success btn-md" do%><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集<% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

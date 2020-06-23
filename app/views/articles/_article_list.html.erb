@@ -9,9 +9,11 @@
       <h3><b><%= article.title %></b></h3>
     </div>
     <% article.article_genres.each do |genre_map| %>
-      <div class="article-item-tag">
-        <%= genre_map.genre.name %>
-      </div>
+      <%= link_to genre_path(genre_map.genre) do%>
+        <div class="article-item-tag">
+          <%= genre_map.genre.name %>
+        </div>
+      <% end %>
     <% end %>
     <div class="col-md-12 article-item-content overflow-auto">
       <!-- html_safeメソッドでエスケープ処理を防ぐ -->

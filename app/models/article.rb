@@ -31,4 +31,11 @@ class Article < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+
+  # 記事を曖昧検索
+  def Article.search(search, user_or_article_or_question)
+    if user_or_article_or_question == "2"
+      Article.where(['title LIKE ?', "%#{search}%"]).or(Article.where(['content LIKE ?', "%#{search}%"]))
+    end
+  end
 end
