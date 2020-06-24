@@ -12,7 +12,14 @@
           </div>
         </div>
         <%= render "questions/new_question" %>
-        <%= render "questions/question_list", questions: @questions %>
+        <div id="questions">
+          <%= render "questions/question_list", questions: @questions %>
+        </div>
+        <div class="page-load-status">
+          <div class="infinite-scroll-request">
+            <%= paginate @questions %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

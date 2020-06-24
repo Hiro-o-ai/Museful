@@ -20,6 +20,7 @@
 //= require activestorage
 //= require chartkick
 //= require Chart.bundle
+//= require infinite-scroll.pkgd.js
 //= require turbolinks
 //= require_tree
 
@@ -133,4 +134,6 @@ $(function () {
     })
   });
 });
+
+
 
