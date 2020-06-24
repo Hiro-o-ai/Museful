@@ -149,6 +149,7 @@
               <h3>My Article</h3>
             </div>
           </div>
+          <%= render "articles/new_article" %>
           <%= render "articles/article_list", articles: @articles %>
         </div>
         <!-- 質問一覧 -->
@@ -159,6 +160,7 @@
               <h3>My Question</h3>
             </div>
           </div>
+          <%= render "questions/new_question" %>
           <%= render "questions/question_list", questions: @questions %>
         </div>
       </div>

@@ -11,6 +11,14 @@
               <h2>Article</h2>
             </div>
           </div>
+          <%= form_tag(genre_narrow_article_path(@genre), :method => "get" ) do %>
+            <div class="input-group">
+              <%= text_field_tag :search,params[:search], placeholder: "キーワードを入力してください" %>
+              <%= button_tag(type: "submit") do %>
+                絞り込み
+              <% end %>
+            </div>
+          <% end %>
           <%= render "articles/article_list", articles: @articles %>
         <% else %>
           <div class="question-head">
@@ -19,6 +27,14 @@
               <h2>Question</h2>
             </div>
           </div>
+          <%= form_tag(genre_narrow_question_path(@genre), :method => "get" ) do %>
+            <div class="input-group">
+              <%= text_field_tag :search,params[:search], placeholder: "キーワードを入力してください" %>
+              <%= button_tag(type: "submit") do %>
+                絞り込み
+              <% end %>
+            </div>
+          <% end %>
           <%= render "questions/question_list", questions: @questions %>
         <% end %>
       </div>

@@ -1,10 +1,6 @@
-<div class="new-quesiton">
-  <% if user_signed_in? %>
-    <%= link_to new_question_path, class: "nav-link" do%><i class="fa fa-plus-square" aria-hidden="true" style="font-size: 40px;"></i> 新規投稿<% end %>
-  <% end %>
-</div>
 <% @questions.each do |question| %>
   <div class="question-item">
+    <div class="offset-md-8"><%= question.created_at.strftime("%Y-%m-%d %H:%M:%S") %></div>
     <div class="row question-item-head">
       <h3><b><%= question.title %></b></h3>
       <% if question.status == "回答受付中" %>

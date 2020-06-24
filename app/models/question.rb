@@ -27,9 +27,9 @@ class Question < ApplicationRecord
   end
 
   # 質問を曖昧検索
-  def Question.search(search, user_or_article_or_question)
-    if user_or_article_or_question == "3"
-      Question.where(['title LIKE ?', "%#{search}%"]).or(Question.where(['content LIKE ?', "%#{search}%"]))
+  def self.search(search, user_or_article_or_question)
+    if user_or_article_or_question == "質問"
+      self.where(['title LIKE ?', "%#{search}%"]).or(self.where(['content LIKE ?', "%#{search}%"]))
     end
   end
 end

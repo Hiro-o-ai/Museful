@@ -50,10 +50,17 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :update]
   patch "/all_read" => "notifications#all_read"
 
-  resources :genres, only: [:show]
+  resources :genres, only: [:show] do
+    get "/narrow_article" =>"genres#narrow_article"
+    get "/narrow_question" =>"genres#narrow_question"
+  end
 
   get "/search" =>"seaches#top"
   get "/search/result" =>"seaches#search"
+
+  get "/article_sort" =>"seaches#article_sort"
+  get "/question_sort" =>"seaches#question_sort"
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

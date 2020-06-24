@@ -33,9 +33,9 @@ class Article < ApplicationRecord
   end
 
   # 記事を曖昧検索
-  def Article.search(search, user_or_article_or_question)
-    if user_or_article_or_question == "2"
-      Article.where(['title LIKE ?', "%#{search}%"]).or(Article.where(['content LIKE ?', "%#{search}%"]))
+  def self.search(search, user_or_article_or_question)
+    if user_or_article_or_question == "記事"
+      self.where(['title LIKE ?', "%#{search}%"]).or(self.where(['content LIKE ?', "%#{search}%"]))
     end
   end
 end

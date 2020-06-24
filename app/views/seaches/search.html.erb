@@ -4,17 +4,9 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="search-result shadow-lg">
-        <%= form_tag(search_result_path, :method => "get" ) do %>
-          <div class="input-group">
-            <%= select_tag(:option, options_for_select([["記事", "2"],["質問","3"]])) %>
-            <%= text_field_tag :search,params[:search], placeholder: "search" %>
-            <%= button_tag(type: "submit") do %>
-              <i class="fa fa-search" aria-hidden="true"></i>
-            <% end %>
-          </div>
-        <% end %>
+        <%= render "seaches/search_form" %>
       </div>
-      <% if @article_or_question == "2" %>
+      <% if @article_or_question == "記事" %>
         <div class="col-md-10 article-board">
           <div class="article-head">
             <div class="pin"></div>
@@ -22,6 +14,14 @@
               <h2>Article</h2>
             </div>
           </div>
+          <%= form_tag(article_sort_path, :method => "get" ) do %>
+            <div class="input-group">
+              <%= select_tag(:keyword, options_for_select([["新しい投稿順", "new"],["古い投稿順", "old"],["いいねの多い順", "likes"],["いいねの少ない順", "dislikes"],["ブックマークの多い順", "bookmarks"],["ブックマークの少ない順", "disbookmarks"],["平均評価の多い順", "rates"],["平均評価の少ない順", "disrates"]])) %>
+              <%= button_tag(type: "submit") do %>
+                並び替える
+              <% end %>
+            </div>
+          <% end %>
           <%= render "articles/article_list", articles: @articles %>
         </div>
       <% else %>
@@ -32,6 +32,14 @@
               <h2>Question</h2>
             </div>
           </div>
+          <%= form_tag(question_sort_path, :method => "get" ) do %>
+            <div class="input-group">
+              <%= select_tag(:keyword, options_for_select([["新しい投稿順", "new"],["古い投稿順", "old"],["共感の多い順", "responses"],["共感の少ない順", "disresponses"],["回答受付中", "unsolve"],["解決済", "solve"]])) %>
+              <%= button_tag(type: "submit") do %>
+                並び替える
+              <% end %>
+            </div>
+          <% end %>
           <%= render "questions/question_list", questions: @questions %>
         </div>
       <% end %>
