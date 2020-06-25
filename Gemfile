@@ -109,3 +109,5 @@ gem "chartkick"
 gem 'groupdate'
 # sqlite用
 gem 'dateslices'
+# パンくずリスト
+gem "gretel"

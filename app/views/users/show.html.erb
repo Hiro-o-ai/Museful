@@ -20,6 +20,10 @@
       <a href="#question" data-toggle="tab" class="nav-link" role="presentation" aria-selected="false" style="color:black;">My Question</a>
     </li>
   </ul>
+
+  <% breadcrumb :user, @user %>
+  <%= breadcrumbs pretext: " ",separator: " &rsaquo; ", class: "breadcrumbs-list" %>
+  
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="tab-content">
