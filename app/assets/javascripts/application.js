@@ -26,6 +26,10 @@
 
 
 $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function () {
   $(document).on("click", ".edit-answer-button", function () {
     var answerId = $(this).data("answer-id");
     var answerLabelArea = $("#answer-content-" + answerId);
