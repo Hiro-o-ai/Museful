@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_023624) do
+ActiveRecord::Schema.define(version: 2020_06_25_060758) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_answers_on_status"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "article_genres", force: :cascade do |t|
@@ -48,6 +50,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.datetime "updated_at", null: false
     t.integer "impressions_count", default: 0
     t.float "avarage_rate", default: 0.0, null: false
+    t.index ["content"], name: "index_articles_on_content"
+    t.index ["title"], name: "index_articles_on_title"
   end
 
   create_table "bookmarks", force: :cascade do |t|
@@ -55,6 +59,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_bookmarks_on_article_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "browsing_histories", force: :cascade do |t|
@@ -71,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.float "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -88,6 +95,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["case"], name: "index_genres_on_case"
+    t.index ["status"], name: "index_genres_on_status"
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -135,6 +144,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
+    t.index ["read"], name: "index_notifications_on_read"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -153,6 +163,9 @@ ActiveRecord::Schema.define(version: 2020_06_22_023624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "impressions_count", default: 0
+    t.index ["content"], name: "index_questions_on_content"
+    t.index ["status"], name: "index_questions_on_status"
+    t.index ["title"], name: "index_questions_on_title"
   end
 
   create_table "responses", force: :cascade do |t|
