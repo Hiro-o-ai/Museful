@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2020_06_25_060758) do
     t.datetime "updated_at", null: false
     t.integer "impressions_count", default: 0
     t.float "avarage_rate", default: 0.0, null: false
-    t.index ["content"], name: "index_articles_on_content"
     t.index ["title"], name: "index_articles_on_title"
   end
 
@@ -163,7 +162,6 @@ ActiveRecord::Schema.define(version: 2020_06_25_060758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "impressions_count", default: 0
-    t.index ["content"], name: "index_questions_on_content"
     t.index ["status"], name: "index_questions_on_status"
     t.index ["title"], name: "index_questions_on_title"
   end
