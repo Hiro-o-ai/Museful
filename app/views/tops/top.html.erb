@@ -4,35 +4,40 @@
   <h2 class="lead">あなたの新生活を照らす　　　<span>Museful</span></h2>
   <hr class="my-4">
   <% if user_signed_in? %>
-    <p>記事を投稿したい方は　<%= link_to "こちら",new_article_path %>　をクリックしてください</p>
-    <p>質問したい方は　<%= link_to "こちら",new_question_path %>　をクリックしてください</p>
+    <p class="fade fade1">記事を投稿したい方は　<%= link_to "こちら",new_article_path %>　をクリックしてください</p>
+    <p class="fade fade2">質問したい方は　<%= link_to "こちら",new_question_path %>　をクリックしてください</p>
   <% else %>
-    <p>ここは引越しなどの新生活に関するお役立ち情報を共有したり、生活に関する悩みなどを会員同士で解決し合うサイトになります。</p>
-    <p>会員登録をすると記事や質問の投稿、閲覧履歴の確認などができるようになります。</p>
+    <p class="fade fade1">ここは引越しなどの新生活に関するお役立ち情報を共有したり、生活に関する悩みなどを会員同士で解決し合うサイトになります。</p>
+    <p class="fade fade2">会員登録をすると記事や質問の投稿、閲覧履歴の確認などができるようになります。</p>
     <br>
   <% end %>
-  <p>記事の一覧を見たい方は　<%= link_to "こちら",articles_path %>　をクリックしてください</p>
-  <p>質問の一覧を見たい方は　<%= link_to "こちら",questions_path %>　をクリックしてください</p>
+  <p class="fade fade3">記事の一覧を見たい方は　<%= link_to "こちら",articles_path %>　をクリックしてください</p>
+  <p class="fade fade4">質問の一覧を見たい方は　<%= link_to "こちら",questions_path %>　をクリックしてください</p>
 </div>
 <div class="top">
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-md-10 genre-box">
-        <div class="pin"></div>
-        <div class="genre-title">
-          <button type="button" class="btn" data-toggle="tooltip" data-placement="right" title="タグをクリックするとそのタグがついている投稿の一覧が見れます。"><h2>Genres　　　　　　　　　　　　　　　　　　　　　　　　　</h2></button>
-        </div>
-        <div class="article-tags">
-          <h4><i class="fa fa-tags" aria-hidden="true"></i> article</h4>
-          <% @article_genres.each do |genre| %>
-            <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
-          <% end %>
-        </div>
-        <div class="question-tags">
-          <h4><i class="fa fa-tags" aria-hidden="true"></i> question</h4>
-          <% @question_genres.each do |genre| %>
-            <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
-          <% end %>
+      <div id="main">
+        <div class="col-md-10 genre-box" onMouseover="openpopup()" onMouseout="closepopup()">
+          <div class="pin"></div>
+          <div class="genre-title">
+            <h2>Genres</h2>
+          </div>
+          <div id="popup" onMouseover="openpopup()" onMouseout="closepopup()">
+            <div class="sample-tag"></div>をクリックするとその<div class="sample-tag"></div>がついている投稿の一覧が見れます。
+          </div>
+          <div class="article-tags">
+            <h4><i class="fa fa-tags" aria-hidden="true"></i> article</h4>
+            <% @article_genres.each do |genre| %>
+              <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
+            <% end %>
+          </div>
+          <div class="question-tags">
+            <h4><i class="fa fa-tags" aria-hidden="true"></i> question</h4>
+            <% @question_genres.each do |genre| %>
+              <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="col-md-10 article-ranking">

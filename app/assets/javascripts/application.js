@@ -25,9 +25,13 @@
 //= require_tree
 
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+function closepopup() {
+popup.style.display = "none";
+}
+function openpopup() {
+closepopup();
+popup.style.display = "block";
+}
 
 $(function () {
   $(document).on("click", ".edit-answer-button", function () {

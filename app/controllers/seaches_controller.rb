@@ -9,7 +9,7 @@ class SeachesController < ApplicationController
     if @article_or_question == "記事"
       @articles = Article.search(search, @article_or_question).page(params[:page]).per(5)
     else
-      @questions = Question.search(search, @article_or_question).page(params[:page]).per(3)
+      @questions = Question.search(search, @article_or_question).page(params[:page]).per(5)
     end
   end
 
@@ -85,9 +85,9 @@ class SeachesController < ApplicationController
     selection = params[:keyword]
     case selection
       when "new"
-        @questions = questions.order(created_at: :desc).page(params[:page]).per(3)
+        @questions = questions.order(created_at: :desc).page(params[:page]).per(5)
       when "old"
-        @questions = questions.order(created_at: :asc).page(params[:page]).per(3)
+        @questions = questions.order(created_at: :asc).page(params[:page]).per(5)
       when 'responses'
         sort_questions = Question.find(Response.group(:question_id).order('count(question_id) desc').pluck(:question_id))
         @questions = []
@@ -99,7 +99,7 @@ class SeachesController < ApplicationController
           end
         end
         @questions.push(questions).flatten!.uniq!
-        @questions = Kaminari.paginate_array(@questions).page(params[:page]).per(3)
+        @questions = Kaminari.paginate_array(@questions).page(params[:page]).per(5)
       when 'disresponses'
         sort_questions = Question.find(Response.group(:question_id).order('count(question_id) desc').pluck(:question_id))
         @questions = []
@@ -111,19 +111,19 @@ class SeachesController < ApplicationController
           end
         end
         @questions.push(questions).flatten!.uniq!.reverse!
-        @questions = Kaminari.paginate_array(@questions).page(params[:page]).per(3)
+        @questions = Kaminari.paginate_array(@questions).page(params[:page]).per(5)
       when "unsolve"
         questions_id = []
         questions.each do |question|
           questions_id.append(question.id)
         end
-        @questions = Question.where(id:questions_id,status: "回答受付中").page(params[:page]).per(3)
+        @questions = Question.where(id:questions_id,status: "回答受付中").page(params[:page]).per(5)
       when 'solve'
         questions_id = []
         questions.each do |question|
           questions_id.append(question.id)
         end
-        @questions = Question.where(id:questions_id,status: "解決済み").page(params[:page]).per(3)
+        @questions = Question.where(id:questions_id,status: "解決済み").page(params[:page]).per(5)
     end
     @article_or_question = "質問"
     render "search"
