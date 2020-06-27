@@ -13,7 +13,11 @@ class CommentsController < ApplicationController
     @comment.destroy
     # comment_formを展開するために使用
     @comment_new = Comment.new
-    @article.update(avarage_rate: @article.comments.average(:rate))
+    if @article.comments.count == 0
+      @article.update(avarage_rate: 0)
+    else
+      @article.update(avarage_rate: @article.comments.average(:rate))
+    end
   end
 
   def update
