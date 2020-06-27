@@ -1,0 +1,42 @@
+Searching 3210 files for "logo"
+
+/Users/okajimahiroshitadashi/Desktop/work/vagrant/Museful/app/views/layouts/_admin_header.html.erb:
+    2    <div class="navbar-brand ml-5">
+    3      <%= link_to admins_path do %>
+    4:       <%= image_tag 'logo.png', size: '80x30' %>
+    5      <% end %>
+    6    </div>
+
+/Users/okajimahiroshitadashi/Desktop/work/vagrant/Museful/app/views/layouts/_user_header.html.erb:
+    2    <div class="navbar-brand ml-5">
+    3      <%= link_to root_path do %>
+    4:       <%= image_tag 'logo1.png', size: '80x30' %>
+    5      <% end %>
+    6    </div>
+
+/Users/okajimahiroshitadashi/Desktop/work/vagrant/Museful/log/capistrano.log:
+  443   DEBUG [696a43f0] 	I, [2020-06-18T13:58:30.865850 #14431]  INFO -- : Writing /home/ec2-user/Museful/releases/20200618135808/public/assets/coluc-a63f6c97e9b5e1d278301e6aed32c51ece6f9fe1e267a6f155b00d7e0669438c.jpg
+  444   DEBUG [696a43f0] 	I, [2020-06-18T13:58:30.868078 #14431]  INFO -- : Writing /home/ec2-user/Museful/releases/20200618135808/public/assets/greenpin-300368a8979b848f67278a8aef45201eb93954b4c094a97bcedadee2ae81b846.png
+  445:  DEBUG [696a43f0] 	I, [2020-06-18T13:58:30.869586 #14431]  INFO -- : Writing /home/ec2-user/Museful/releases/20200618135808/public/assets/logo-481480e0e493969ee49bb885c3797ea6132c48b43ae1cc75ea7f8dcb9d5f5590.png
+  446   DEBUG [696a43f0] 	I, [2020-06-18T13:58:30.873120 #14431]  INFO -- : Writing /home/ec2-user/Museful/releases/20200618135808/public/assets/moya-63c16ca1ba1fa612b8fe1f8b559fba0c81b58f646a7a095443473b420cbd20af.jpg
+  447   DEBUG [696a43f0] 	I, [2020-06-18T13:58:30.896045 #14431]  INFO -- : Writing /home/ec2-user/Museful/releases/20200618135808/public/assets/no_image-1c38a5ec8900bd7e5793809fae71c3ac105be3ff6b8c1de648b5e886844873b5.jpg
+  ...
+ 2370   DEBUG [142683dd] 	I, [2020-06-26T02:05:10.905993 #13182]  INFO -- : Writing /home/ec2-user/Museful/releases/20200626020120/public/assets/cancel-on-ce07a8b5022e59a1bde9690b720a6bf10fc9767db6512d14ebff2782ec62b5bf.png
+ 2371   DEBUG [142683dd] 	I, [2020-06-26T02:05:10.911979 #13182]  INFO -- : Writing /home/ec2-user/Museful/releases/20200626020120/public/assets/coluc-a63f6c97e9b5e1d278301e6aed32c51ece6f9fe1e267a6f155b00d7e0669438c.jpg
+ 2372:  DEBUG [142683dd] 	I, [2020-06-26T02:05:10.914866 #13182]  INFO -- : Writing /home/ec2-user/Museful/releases/20200626020120/public/assets/logo-481480e0e493969ee49bb885c3797ea6132c48b43ae1cc75ea7f8dcb9d5f5590.png
+ 2373   DEBUG [142683dd] 	I, [2020-06-26T02:05:10.921793 #13182]  INFO -- : Writing /home/ec2-user/Museful/releases/20200626020120/public/assets/moya-63c16ca1ba1fa612b8fe1f8b559fba0c81b58f646a7a095443473b420cbd20af.jpg
+ 2374   DEBUG [142683dd] 	I, [2020-06-26T02:05:10.924734 #13182]  INFO -- : Writing /home/ec2-user/Museful/releases/20200626020120/public/assets/no_image-1c38a5ec8900bd7e5793809fae71c3ac105be3ff6b8c1de648b5e886844873b5.jpg
+
+/Users/okajimahiroshitadashi/Desktop/work/vagrant/Museful/log/development.log:
+    <binary>
+
+/Users/okajimahiroshitadashi/Desktop/work/vagrant/Museful/tmp/cache/assets/sprockets/v3.0/Ak/AKAquqBautDmbnG3MTDEgRwReyNCH2buxh8TKngJEyg.cache:
+    <binary>
+
+/Users/okajimahiroshitadashi/Desktop/work/vagrant/Museful/tmp/cache/assets/sprockets/v3.0/nP/nplkqL1jF-RgqD5uSwjYPjU6KB9Vigkwn76sTdTc-is.cache:
+    <binary>
+
+/Users/okajimahiroshitadashi/Desktop/work/vagrant/Museful/tmp/cache/assets/sprockets/v3.0/zU/ZUzG79XmXpkRVcCLydG6DcV4c2_eeDYx4t_M-7Gaakw.cache:
+    <binary>
+
+45 matches across 7 files

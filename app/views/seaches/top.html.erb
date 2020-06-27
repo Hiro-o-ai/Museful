@@ -9,6 +9,29 @@
       <div class="search shadow-lg">
         <%= render "seaches/search_form" %>
       </div>
+      <div id="main">
+        <div class="col-md-10 genre-box" onMouseover="openpopup()" onMouseout="closepopup()">
+          <div class="pin"></div>
+          <div class="genre-title">
+            <h2>TagSearch</h2>
+          </div>
+          <div id="popup" onMouseover="openpopup()" onMouseout="closepopup()">
+            <div class="sample-tag"></div>をクリックするとそのタグがついている投稿の一覧が見れます。
+          </div>
+          <div class="article-tags">
+            <h4><i class="fa fa-tags" aria-hidden="true"></i> article</h4>
+            <% @article_genres.each do |genre| %>
+              <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
+            <% end %>
+          </div>
+          <div class="question-tags">
+            <h4><i class="fa fa-tags" aria-hidden="true"></i> question</h4>
+            <% @question_genres.each do |genre| %>
+              <%= link_to genre_path(genre) do%><div class="genre-item"><%= genre.name %></div><% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -1,5 +1,7 @@
 class SeachesController < ApplicationController
   def top
+    @article_genres = Genre.where(case:"記事", status: "有効")
+    @question_genres = Genre.where(case:"質問", status: "有効")
   end
   
   def search

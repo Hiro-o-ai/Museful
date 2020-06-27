@@ -1,5 +1,5 @@
 crumb :root do
-  link "Home", root_path
+  link "トップページ", root_path
 end
 
 crumb :user do |user|
@@ -24,8 +24,14 @@ crumb :search do
   link "検索", search_path
 end
 
+crumb :search_result do
+  link "検索結果", search_result_path
+  parent :search
+end
+
 crumb :genre_search do |genre|
   link "ジャンル検索", genre_path(genre)
+  parent :search
 end
 
 crumb :articles do
