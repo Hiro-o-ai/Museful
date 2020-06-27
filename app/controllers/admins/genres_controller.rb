@@ -2,8 +2,8 @@ class Admins::GenresController < ApplicationController
   before_action :authenticate_admin!
   def index
     @genre = Genre.new
-    @article_genres = Genre.where(case:"記事", status: "有効")
-    @question_genres = Genre.where(case:"質問", status: "有効")
+    @article_genres = Genre.where(case:"記事")
+    @question_genres = Genre.where(case:"質問")
   end
 
   def create
