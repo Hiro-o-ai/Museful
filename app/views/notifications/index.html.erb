@@ -19,7 +19,7 @@
           </div>
         <% end %>
         <% if current_user.notifications.present? %>
-          <% @notificatons.order(created_at: :desc).each do |notification| %>
+          <% @notificatons.each do |notification| %>
             <%= render "notifications/#{notification.action}", notification: notification %>
           <% end %>
         <% else %>
