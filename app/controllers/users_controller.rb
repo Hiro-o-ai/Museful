@@ -4,11 +4,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # 閲覧履歴一覧用
-    @browsing_histories = @user.browsing_histories
+    @browsing_histories = @user.browsing_histories.includes(:article)
     # ブックマーク一覧用
-    @bookmarks = @user.bookmarks
-    @articles = @user.articles.order(created_at: :desc)
-    @questions = @user.questions.order(created_at: :desc)
+    @bookmarks = @user.bookmarks.includes(:article)
+    @articles = @user.articles.includes(:article_genres).order(created_at: :desc)
+    @questions = @user.questions.includes(:question_genres).order(created_at: :desc)
     @clear_quesions = @questions.where(status:"解決済み")
     @answers = @user.answers
     @best_answers = @answers.where(status:"ベストアンサー")

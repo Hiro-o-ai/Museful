@@ -1,4 +1,4 @@
-<% article.comments.order(created_at: :desc).each do |comment| %>
+<% article.comments.includes(:user).order(created_at: :desc).each do |comment| %>
   <div class="comment-item" id="comment-<%= comment.id %>">
     <div class="row">
       <div class="col-md-1">

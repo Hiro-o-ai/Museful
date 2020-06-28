@@ -9,15 +9,15 @@ class SeachesController < ApplicationController
     search = params[:search]
     session[:search] = search
     if @article_or_question == "記事"
-      @articles = Article.search(search, @article_or_question).page(params[:page]).per(5)
+      @articles = Article.includes(:article_genres).search(search, @article_or_question).page(params[:page]).per(5)
     else
-      @questions = Question.search(search, @article_or_question).page(params[:page]).per(5)
+      @questions = Question.includes(:question_genres).search(search, @article_or_question).page(params[:page]).per(5)
     end
   end
 
   def article_sort
     search = session[:search]
-    articles = Article.search(search, "記事")
+    articles = Article.includes(:article_genres).search(search, "記事")
     selection = params[:keyword]
     case selection
       when "new"
@@ -83,7 +83,7 @@ class SeachesController < ApplicationController
 
   def question_sort
     search = session[:search]
-    questions = Question.search(search, "質問")
+    questions = Question.includes(:question_genres).search(search, "質問")
     selection = params[:keyword]
     case selection
       when "new"

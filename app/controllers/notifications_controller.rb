@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notificatons = current_user.notifications.order(created_at: :desc)
+    @notificatons = current_user.notifications.includes(:notifiable).order(created_at: :desc)
   end
 
   def update

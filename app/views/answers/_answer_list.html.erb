@@ -1,4 +1,4 @@
-<% question.answers.order(created_at: :desc).each do |answer| %>
+<% question.answers.includes(:user).order(created_at: :desc).each do |answer| %>
   <div class="answer-item" id="answer-<%= answer.id %>">
     <% unless answer.status == "アンサー" %>
       <div class="answer-head">

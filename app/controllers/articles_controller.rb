@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.order(created_at: :desc).page(params[:page]).per(5)
+    @articles = Article.includes(:article_genres).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def show
