@@ -22,7 +22,7 @@
             <%= @question.user.nickname %>さん
             </div>
           </div>
-          <div class="col-md-11 question-content">
+          <div class="col-md-11 question-content overflow-auto">
             <!-- html_safeメソッドでエスケープ処理を防ぐ -->
             <%= @question.content.html_safe %>
           </div>
