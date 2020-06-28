@@ -97,14 +97,16 @@
 </section>
 
 <script>
-  $('#star-rate').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-    readOnly: true,
-    score: <%= @article.avarage_rate %>,
+  $(document).on('turbolinks:load', function(){
+    $('#star-rate').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= @article.avarage_rate %>,
+    });
   });
 </script>
 

@@ -43,14 +43,16 @@
     </div>
   </div>
   <script>
-    $('#star-rate-<%= comment.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half: true,
-      readOnly: true,
-      score: <%= comment.rate %>,
+    $(document).on('turbolinks:load', function(){
+      $('#star-rate-<%= comment.id %>').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= comment.rate %>,
+      });
     });
   </script>
 <% end %>
