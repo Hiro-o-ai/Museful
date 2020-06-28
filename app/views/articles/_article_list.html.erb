@@ -59,7 +59,19 @@
     </div>
   </div>
   <script>
-    $(document).ready(function(){
+    $(document).on('turbolinks:load', function(){
+      $('#star-rate-<%= article.id %>').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        number :5,
+        half: true,
+        readOnly: true,
+        score: <%= article.avarage_rate %>,
+      });
+    });
+    $('#articles').on( 'append.infiniteScroll', function() {
       $('#star-rate-<%= article.id %>').raty({
         size: 36,
         starOff:  '<%= asset_path('star-off.png') %>',
