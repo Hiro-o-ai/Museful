@@ -57,6 +57,7 @@
               <div id="star-rate"></div>
               <div>(<%= @article.comments.count %>件)</div>
             </div>
+            <div>好感度<%= @article.comments.average(:score)%>(-0.1〜1.0)</div>
           </div>
           <div class="row link-box">
             <% if user_signed_in? && @article.user_id == current_user.id%>
