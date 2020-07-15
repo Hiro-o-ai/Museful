@@ -77,6 +77,8 @@ gem 'enum_help'
 # 画像投稿用
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+# refileとs3の連携
+gem "refile-s3"
 
 # デザイン用
 gem 'jquery-rails'
