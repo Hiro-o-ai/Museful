@@ -5,7 +5,7 @@ RSpec.describe "Users", type: :request do
   let(:user) { create(:user) }
   let(:user_params) { attributes_for(:user) }
 
-  describe 'POST #create' do
+  describe '新規登録' do
     context 'パラメータが妥当な場合' do
       it 'リクエストが成功すること' do
         post user_registration_path, params: { user: user_params }
@@ -22,20 +22,21 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
-
-
-  # describe "GET /show" do
-  #   it "returns http success" do
-  #     get "/users/show"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-
-  # describe "GET /update" do
-  #   it "returns http success" do
-  #     get "/users/update"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-
+  describe 'ログイン' do
+    context 'パラメータが妥当な場合' do
+      it 'リクエストが成功すること' do
+        post user_session_path, params: { user: user_params }
+        expect(response.status).to eq 200
+      end
+    end
+  end
+  describe 'ユーザー情報更新' do
+    context '正常なパラメータの場合' do
+      it 'リクエストが成功すること' do
+        put user_path user, params: { user: user_params }
+        expect(response.status).to eq 302
+        expect(response).to redirect_to User.last
+      end
+    end
+  end
 end
