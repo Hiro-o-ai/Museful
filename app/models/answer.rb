@@ -5,7 +5,7 @@ class Answer < ApplicationRecord
   validates :content, presence: true
 
   # マジックナンバーになることを防ぐため
-  enum status:{ アンサー: 1, ベストアンサー: 2}
+  enum status: { アンサー: 1, ベストアンサー: 2 }
 
   belongs_to :question
   belongs_to :user
@@ -14,7 +14,9 @@ class Answer < ApplicationRecord
   has_one :notification, as: :notifiable, dependent: :destroy
   # モデルに紐づくインスタンスがcreateされた後で実行する
   after_create_commit :create_notifications
+
   private
+
   # userはされる方のuserなので、questionに紐づくユーザーIDを持ってきている
   # selfでanswerのidとtypeが入る
   def create_notifications

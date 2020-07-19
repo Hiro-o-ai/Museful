@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,8 +11,7 @@ class User < ApplicationRecord
   attachment :image
 
   # マジックナンバーになることを防ぐため
-  enum status:{ 有効: 1, 退会済: 2}
-
+  enum status: { 有効: 1, 退会済: 2 }
 
   has_many :answers, dependent: :destroy
   has_many :articles, dependent: :destroy
@@ -36,7 +34,7 @@ class User < ApplicationRecord
   # ユーザーを曖昧検索
   def self.search(search, user_or_article_or_question)
     if user_or_article_or_question == "会員"
-      self.where(['nickname LIKE ?', "%#{search}%"])
+      where(['nickname LIKE ?', "%#{search}%"])
     end
   end
 end

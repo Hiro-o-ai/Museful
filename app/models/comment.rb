@@ -11,7 +11,9 @@ class Comment < ApplicationRecord
   has_one :notification, as: :notifiable, dependent: :destroy
   # モデルに紐づくインスタンスがcreateされた後で実行する
   after_create_commit :create_notifications
+
   private
+
   # userはされる方のuserなので、articleに紐づくユーザーIDを持ってきている
   # selfでcommentのidとtypeが入る
   def create_notifications

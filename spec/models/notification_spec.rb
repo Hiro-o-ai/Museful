@@ -7,6 +7,7 @@ RSpec.describe Notification, type: :model do
         expect(Notification.reflect_on_association(:notifiable).macro).to eq :belongs_to
       end
     end
+
     context 'userモデルとの関係' do
       it 'N:1となっている' do
         expect(Notification.reflect_on_association(:user).macro).to eq :belongs_to

@@ -11,6 +11,7 @@ RSpec.describe "Questions", type: :request do
     @question = create(:question, user: @user)
     post user_session_path, params: { user: user_params }
   end
+
   describe '質問を新規投稿' do
     context 'パラメータが妥当な場合' do
       it "質問投稿画面に遷移すること" do
@@ -23,6 +24,7 @@ RSpec.describe "Questions", type: :request do
       end
     end
   end
+
   describe "質問を変更する" do
     context "パラメータが妥当な場合" do
       it "質問編集画面に遷移すること" do

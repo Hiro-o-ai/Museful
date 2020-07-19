@@ -1,9 +1,9 @@
 class Notification < ApplicationRecord
   # モデルでpathを使用するために記述
   include Rails.application.routes.url_helpers
-  
+
   # マジックナンバーになることを防ぐため、管理しやすくするため(stringと比較)
-  enum action:{commented: 1, answered: 2, favorited: 3, responsed: 4, liked:5}
+  enum action: { commented: 1, answered: 2, favorited: 3, responsed: 4, liked: 5 }
   enum read: { unread: false, read: true }
 
   # ポリモーフィック関連づけ
@@ -30,4 +30,3 @@ class Notification < ApplicationRecord
     end
   end
 end
-

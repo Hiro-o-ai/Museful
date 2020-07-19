@@ -3,7 +3,6 @@ class Article < ApplicationRecord
 
   validates :title, :content, :genre_ids, presence: true
 
-
   has_many :article_genres, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :browsing_histories, dependent: :destroy
@@ -35,7 +34,7 @@ class Article < ApplicationRecord
   # 記事を曖昧検索
   def self.search(search, user_or_article_or_question)
     if user_or_article_or_question == "記事"
-      self.where(['title LIKE ?', "%#{search}%"]).or(self.where(['content LIKE ?', "%#{search}%"]))
+      where(['title LIKE ?', "%#{search}%"]).or(where(['content LIKE ?', "%#{search}%"]))
     end
   end
 end

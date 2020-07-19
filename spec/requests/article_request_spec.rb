@@ -11,6 +11,7 @@ RSpec.describe "Articles", type: :request do
     @article = create(:article, user: @user)
     post user_session_path, params: { user: user_params }
   end
+
   describe '記事を新規投稿' do
     context 'パラメータが妥当な場合' do
       it "記事投稿画面に遷移すること" do
@@ -23,6 +24,7 @@ RSpec.describe "Articles", type: :request do
       end
     end
   end
+
   describe "記事を変更する" do
     context "パラメータが妥当な場合" do
       it "記事編集画面に遷移すること" do

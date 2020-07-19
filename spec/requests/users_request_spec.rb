@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-
   let(:user) { create(:user) }
   let(:user_params) { attributes_for(:user) }
 
@@ -22,6 +21,7 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
+
   describe 'ログイン' do
     context 'パラメータが妥当な場合' do
       it 'リクエストが成功すること' do
@@ -30,6 +30,7 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
+
   describe 'ユーザー情報更新' do
     context '正常なパラメータの場合' do
       it 'リクエストが成功すること' do

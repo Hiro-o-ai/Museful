@@ -15,7 +15,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if params[:answer_id] == nil
+    if params[:answer_id].nil?
       answer = Answer.find(params[:id])
       answer.update(answer_params)
     else
@@ -29,6 +29,7 @@ class AnswersController < ApplicationController
   end
 
   private
+
   def answer_params
     params.require(:answer).permit(:title, :content, :status)
   end

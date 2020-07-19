@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only:[:edit]
+  before_action :authenticate_user!, only: [:edit]
   before_action :correct_user, only: [:edit]
   def show
     @user = User.find(params[:id])
@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     @bookmarks = @user.bookmarks.includes(:article)
     @articles = @user.articles.includes(:article_genres).order(created_at: :desc)
     @questions = @user.questions.includes(:question_genres).order(created_at: :desc)
-    @clear_quesions = @questions.where(status:"解決済み")
+    @clear_quesions = @questions.where(status: "解決済み")
     @answers = @user.answers
-    @best_answers = @answers.where(status:"ベストアンサー")
+    @best_answers = @answers.where(status: "ベストアンサー")
   end
 
   def edit
@@ -38,13 +38,14 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:nickname, :image, :status, :introduction)
   end
 
   def correct_user
     @user = User.find(params[:id])
-    if  @user.id != current_user.id
+    if @user.id != current_user.id
       redirect_to user_path(@user)
     end
   end

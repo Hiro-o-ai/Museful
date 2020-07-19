@@ -7,7 +7,9 @@ class Like < ApplicationRecord
   has_one :notification, as: :notifiable, dependent: :destroy
   # モデルに紐づくインスタンスがcreateされた後で実行する
   after_create_commit :create_notifications
+
   private
+
   # likeableはcommentかanswerのidやtypeが保存されている
   # userはされる方のuserなので、commentやanswerに紐づくユーザーIDを持ってきている
   # selfでcommentやanswerのidとtypeが入る

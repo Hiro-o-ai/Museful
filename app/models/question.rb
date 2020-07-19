@@ -3,7 +3,7 @@ class Question < ApplicationRecord
 
   validates :title, :content, :genre_ids, presence: true
 
-  enum status:{回答受付中: 1, 解決済み: 2}
+  enum status: { 回答受付中: 1, 解決済み: 2 }
 
   has_many :answers, dependent: :destroy
   has_many :question_genres, dependent: :destroy
@@ -29,7 +29,7 @@ class Question < ApplicationRecord
   # 質問を曖昧検索
   def self.search(search, user_or_article_or_question)
     if user_or_article_or_question == "質問"
-      self.where(['title LIKE ?', "%#{search}%"]).or(self.where(['content LIKE ?', "%#{search}%"]))
+      where(['title LIKE ?', "%#{search}%"]).or(where(['content LIKE ?', "%#{search}%"]))
     end
   end
 end

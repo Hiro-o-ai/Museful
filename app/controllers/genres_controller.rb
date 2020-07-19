@@ -36,5 +36,4 @@ class GenresController < ApplicationController
     end
     render "show"
   end
-
 end

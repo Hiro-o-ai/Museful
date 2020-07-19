@@ -2,8 +2,8 @@ class Admins::GenresController < ApplicationController
   before_action :authenticate_admin!
   def index
     @genre = Genre.new
-    @article_genres = Genre.where(case:"記事")
-    @question_genres = Genre.where(case:"質問")
+    @article_genres = Genre.where(case: "記事")
+    @question_genres = Genre.where(case: "質問")
   end
 
   def create
@@ -11,8 +11,8 @@ class Admins::GenresController < ApplicationController
     if @genre.save
       redirect_to admins_genres_path
     else
-      @article_genres = Genre.where(case:"記事", status: "有効")
-      @question_genres = Genre.where(case:"質問", status: "有効")
+      @article_genres = Genre.where(case: "記事", status: "有効")
+      @question_genres = Genre.where(case: "質問", status: "有効")
       render :index
     end
   end
@@ -33,6 +33,7 @@ class Admins::GenresController < ApplicationController
   end
 
   private
+
   def genre_params
     params.require(:genre).permit(:name, :case, :status)
   end

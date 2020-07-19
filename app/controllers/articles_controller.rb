@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
-  impressionist :actions=>[:show]
-  before_action :authenticate_user!, only:[:new, :edit]
+  impressionist :actions => [:show]
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :correct_user, only: [:edit]
   def new
     @article = Article.new
-    @genres = Genre.where(case: "記事",status: "有効")
+    @genres = Genre.where(case: "記事", status: "有効")
   end
 
   def create
@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to article_path(@article)
     else
-      @genres = Genre.where(case: "記事",status: "有効")
+      @genres = Genre.where(case: "記事", status: "有効")
       render :new
     end
   end
@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @genres = Genre.where(case: "記事",status: "有効")
+    @genres = Genre.where(case: "記事", status: "有効")
   end
 
   def update
@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       redirect_to article_path(@article)
     else
-      @genres = Genre.where(case: "記事",status: "有効")
+      @genres = Genre.where(case: "記事", status: "有効")
       render :edit
     end
   end
@@ -62,13 +62,14 @@ class ArticlesController < ApplicationController
   end
 
   private
+
   def article_params
     params.require(:article).permit(:title, :content, genre_ids: [])
   end
 
   def correct_user
     @article = Article.find(params[:id])
-    if  @article.user_id != current_user.id
+    if @article.user_id != current_user.id
       redirect_to articles_path
     end
   end
