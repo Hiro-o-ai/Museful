@@ -91,7 +91,7 @@ gem 'summernote-rails', '~> 0.8.10.0'
 gem 'pry-rails'
 
 # ページネーション用
-gem 'kaminari', '~> 1.1.1'
+gem 'kaminari', '~> 1.2.1'
 
 gem 'devise'
 
